@@ -1,12 +1,24 @@
-'use strict';
+(function(){
+    var app = angular.module('Workshop', ['ngAnimate', 'ui.bootstrap']);
 
-// Declare app level module which depends on views, and components
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.view1',
-  'myApp.view2',
-  'myApp.version'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+    app.controller('BaseController', function ($scope) {
+        $scope.tabs = [
+            { title:'Ulubione',
+                content: [
+                    { name: 'ulubiony 1' },
+                    { name: 'ulubiony 2' },
+                    { name: 'ulubiony 3' }
+                ]
+
+            },
+            { title:'Polecane', content: [
+                { name: 'polecane 1' },
+                { name: 'polecane 2' },
+                { name: 'polecane 3' }
+            ] }
+        ];
+
+
+    });
+
+})();
