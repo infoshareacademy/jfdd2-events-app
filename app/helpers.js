@@ -17,4 +17,6 @@ app.factory('alert', function($uibModal) {
     };
 
 });
-
+/**
+ * Created by ukasz on 04.04.16.
+ */

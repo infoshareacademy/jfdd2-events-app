@@ -1,3 +1,4 @@
+
 app.controller('KitchenSinkCtrl', function(moment, alert) {
 
     var vm = this;
@@ -14,7 +15,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert) {
             draggable: true,
             resizable: true
         }, {
-            title: '<i class="glyphicon glyphicon-asterisk"></i> <span class="text-primary">Another event</span>, with a <i>html</i> title',
+            title: 'Another event',
             type: 'info',
             startsAt: moment().subtract(1, 'day').toDate(),
             endsAt: moment().add(5, 'days').toDate(),
@@ -56,6 +57,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert) {
     };
 
 });
+
 
 app.controller('BaseController', function ($scope) {
     $scope.tabs = [
