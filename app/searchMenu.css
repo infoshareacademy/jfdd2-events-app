@@ -1,0 +1,10 @@
+.search-menu .form-control {
+    display: inline-block;
+    width: 175px;
+    height: auto;
+    margin-right: 0;
+}
+
+.search-menu {
+    text-align: right;
+}
