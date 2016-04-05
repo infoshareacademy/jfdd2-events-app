@@ -76,5 +76,7 @@ app.controller('BaseController', function ($scope) {
         ] }
     ];
 
+    $scope.events = day.events["czw, 04.02"];
+
 
 });
