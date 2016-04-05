@@ -2,7 +2,7 @@ app.factory('alert', function($uibModal) {
 
     function show(action, event) {
         return $uibModal.open({
-            templateUrl: 'modalContent.html',
+            templateUrl: 'event/modalContent.html',
             controller: function($uibModalInstance) {
                 var vm = this;
                 vm.action = action;
@@ -20,6 +20,3 @@ app.factory('alert', function($uibModal) {
     };
 
 });
-/**
- * Created by ukasz on 04.04.16.
- */

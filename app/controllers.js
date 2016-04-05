@@ -38,15 +38,18 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
 
     function eventClicked(event) {
         var modalInstance = alert.show('Clicked', event);
-
+        
         modalInstance.result.then(function (event) {
             console.log(event);
             vm.tabs[0].content.push(event);
-
-        });
+        
+        }
+        );
     }
 
     function eventEdited(event) {
+        console.log(event)
+        debugger
         alert.show('Edited', event);
     }
 
