@@ -3,10 +3,13 @@ app.factory('alert', function($uibModal) {
     function show(action, event) {
         return $uibModal.open({
             templateUrl: 'modalContent.html',
-            controller: function() {
+            controller: function($uibModalInstance) {
                 var vm = this;
                 vm.action = action;
                 vm.event = event;
+                vm.addToFav = function () {
+                    $uibModalInstance.close(vm.event);
+                };
             },
             controllerAs: 'vm'
         });

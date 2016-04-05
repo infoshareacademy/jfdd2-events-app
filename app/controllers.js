@@ -1,80 +1,67 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert) {
-
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
     var vm = this;
 
-    //These variables MUST be set as a minimum for the calendar to work
+    //Ustawienia kalendarza
     vm.calendarView = 'month';
     vm.viewDate = new Date();
-    vm.events = [
-        {
-            title: 'An event',
-            type: 'warning',
-            startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-            endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-            draggable: true,
-            resizable: true
-        }, {
-            title: 'Another event',
-            type: 'info',
-            startsAt: moment().subtract(1, 'day').toDate(),
-            endsAt: moment().add(5, 'days').toDate(),
-            draggable: true,
-            resizable: true
-        }, {
-            title: 'This is a really long event title that occurs on every year',
-            type: 'important',
-            startsAt: moment().startOf('day').add(7, 'hours').toDate(),
-            endsAt: moment().startOf('day').add(19, 'hours').toDate(),
-            recursOn: 'year',
-            draggable: true,
-            resizable: true
-        }
-    ];
-
+    vm.events = eventsService.getEvents();
     vm.isCellOpen = true;
 
-    vm.eventClicked = function(event) {
-        alert.show('Clicked', event);
-    };
-
-    vm.eventEdited = function(event) {
-        alert.show('Edited', event);
-    };
-
-    vm.eventDeleted = function(event) {
-        alert.show('Deleted', event);
-    };
-
-    vm.eventTimesChanged = function(event) {
-        alert.show('Dropped or resized', event);
-    };
-
-    vm.toggle = function($event, field, event) {
-        $event.preventDefault();
-        $event.stopPropagation();
-        event[field] = !event[field];
-    };
-
-});
-
-
-app.controller('BaseController', function ($scope) {
-    $scope.tabs = [
-        { title:'Ulubione',
+    //Ulubione i Polecane
+    vm.tabs = [
+        {
+            title: 'Ulubione',
             content: [
-                { name: 'ulubiony 1' },
-                { name: 'ulubiony 2' },
-                { name: 'ulubiony 3' }
+                {
+                    title: 'An event',
+                    type: 'warning',
+                    startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+                    endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+                    draggable: true,
+                    resizable: true
+                }
             ]
 
         },
-        { title:'Polecane', content: [
-            { name: 'polecane 1' },
-            { name: 'polecane 2' },
-            { name: 'polecane 3' }
-        ] }
+        {
+            title: 'Polecane', content: []
+        }
     ];
 
+    //funkcje
+    vm.eventClicked = eventClicked;
+    vm.eventEdited = eventEdited;
+    vm.eventDeleted = eventDeleted;
+    vm.eventTimesChanged = eventTimesChanged;
+    vm.toggle = toggle;
+
+    function eventClicked(event) {
+        var modalInstance = alert.show('Clicked', event);
+
+        modalInstance.result.then(function (event) {
+            console.log(event);
+            vm.tabs[0].content.push(event);
+
+        });
+    }
+
+    function eventEdited(event) {
+        alert.show('Edited', event);
+    }
+
+    function eventDeleted(event) {
+        alert.show('Deleted', event);
+    }
+
+    function eventTimesChanged(event) {
+        alert.show('Dropped or resized', event);
+    }
+
+    function toggle($event, field, event) {
+        $event.preventDefault();
+        $event.stopPropagation();
+        event[field] = !event[field];
+    }
 
 });
