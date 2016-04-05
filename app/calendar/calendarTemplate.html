@@ -12,21 +12,21 @@
                         mwl-date-modifier
                         date="vm.viewDate"
                         decrement="vm.calendarView">
-                    Previous
+                    Poprzedni
                 </button>
                 <button
                         class="btn btn-default"
                         mwl-date-modifier
                         date="vm.viewDate"
                         set-to-today>
-                    Today
+                    Dziś
                 </button>
                 <button
                         class="btn btn-primary"
                         mwl-date-modifier
                         date="vm.viewDate"
                         increment="vm.calendarView">
-                    Next
+                    Następny
                 </button>
             </div>
         </div>
@@ -35,10 +35,10 @@
 
         <div class="col-md-6 text-center">
             <div class="btn-group">
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Year</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Month</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Week</label>
-                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Day</label>
+                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'">Rok</label>
+                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'">Miesiąc</label>
+                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'">Tydzień</label>
+                <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'">Dzień</label>
             </div>
         </div>
     </div>
@@ -67,11 +67,11 @@
     <br><br><br>
 
     <h3 id="event-editor">
-        Edit events
+        Edytuj
         <button
                 class="btn btn-primary pull-right"
                 ng-click="vm.events.push({title: 'New event', type: 'important', draggable: true, resizable: true})">
-            Add new
+            Dodaj
         </button>
         <div class="clearfix"></div>
     </h3>
@@ -80,11 +80,11 @@
 
         <thead>
         <tr>
-            <th>Title</th>
-            <th>Type</th>
-            <th>Starts at</th>
-            <th>Ends at</th>
-            <th>Remove</th>
+            <th>Tytuł</th>
+            <th>Typ</th>
+            <th>Od</th>
+            <th>Do</th>
+            <th>Usuń</th>
         </tr>
         </thead>
 
@@ -162,7 +162,7 @@
                 <button
                         class="btn btn-danger"
                         ng-click="vm.events.splice($index, 1)">
-                    Delete
+                    Usuń
                 </button>
             </td>
         </tr>

@@ -1,6 +1,8 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tmhDynamicLocale) {
     var vm = this;
+
+    tmhDynamicLocale.set('pl');
 
     //Ustawienia kalendarza
     vm.calendarView = 'month';
@@ -48,8 +50,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
     }
 
     function eventEdited(event) {
-        console.log(event)
-        debugger
+
         alert.show('Edited', event);
     }
 
