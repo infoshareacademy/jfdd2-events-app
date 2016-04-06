@@ -18,6 +18,28 @@
 </head>
 <body>
 
+<div>
+    <ul>
+        <li ng-repeat="event in events | filter:search.category">{{event.category}}</li>
+        <!--<li ng-repeat="event in events | filter:search.startDate.date">{{event.startDate.date}}</li>-->
+    </ul>
+</div>
+<div class="search-menu">
+
+    {{eventType}}
+    <select class="form-control" ng-model="search.category" ng-init="search.category = ''">
+        <option value=""> -- Rodzaj eventu --</option>
+        <option value="kino">Kino</option>
+        <option value="teatr">Teatr</option>
+        <option value="muzyka">Muzyka</option>
+        <option value="sztuka">Sztuka</option>
+        <option value="rozrywka">Rozrywka</option>
+        <option value="nauka">Nauka</option>
+        <option value="rekreacja">Rekreacja</option>
+        <option value="inne">Inne</option>
+    </select>
+</div>
+
 
 <div class="container" ng-controller="KitchenSinkCtrl as vm">
 <div class="row">

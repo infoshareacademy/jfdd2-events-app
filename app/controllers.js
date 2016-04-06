@@ -2,8 +2,6 @@
 app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tmhDynamicLocale) {
     var vm = this;
 
-    tmhDynamicLocale.set('pl');
-
     //Ustawienia kalendarza
     vm.calendarView = 'month';
     vm.viewDate = new Date();
