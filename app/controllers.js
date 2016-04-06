@@ -1,20 +1,6 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tmhDynamicLocale, calendarConfig,$window,$scope) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
     var vm = this;
-
-    // tmhDynamicLocale.set('pl');
-    // calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
-
-    //
-    // moment.locale('pl', {
-    //     week : {
-    //         dow : 1 // Monday is the first day of the week
-    //     }
-    // });
-
-
-
-
 
     //Ustawienia kalendarza
     vm.calendarView = 'month';
