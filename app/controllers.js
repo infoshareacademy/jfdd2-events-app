@@ -1,5 +1,8 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig) {
+
+    calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
+
     var vm = this;
 
     //Ustawienia kalendarza
@@ -14,7 +17,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
             title: 'Ulubione',
             content: [
                 {
-                    title: 'An event',
+                    title: 'Wydarzenie',
                     type: 'warning',
                     startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
                     endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
