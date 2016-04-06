@@ -25,7 +25,18 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService) {
 
         },
         {
-            title: 'Polecane', content: []
+
+            title: 'Polecane',
+            content: [
+                {
+                    title: 'An event',
+                    type: 'warning',
+                    startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
+                    endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
+                    draggable: true,
+                    resizable: true
+                }
+            ]
         }
     ];
 

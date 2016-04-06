@@ -10,6 +10,10 @@ app.factory('alert', function($uibModal) {
                 vm.addToFav = function () {
                     $uibModalInstance.close(vm.event);
                 };
+                vm.addToRecomended = function () {
+                    console.log(vm.friendLogin);
+
+                }
             },
             controllerAs: 'vm'
         });
