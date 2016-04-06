@@ -8,4 +8,15 @@
             templateUrl: 'calendar/calendarTemplate.html'
         }
     }
+
+    app.directive('language', language);
+
+
+    function language() {
+        return {
+            restrict: 'EAC',
+            templateUrl: 'calendar/language.html'
+        }
+    }
+    
 })();

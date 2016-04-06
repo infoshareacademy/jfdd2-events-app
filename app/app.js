@@ -7,5 +7,6 @@ var app = angular.module('myApp', [
   'ngRoute',
   'mwl.calendar',
   // 'ngAnimate',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  "oc.lazyLoad"
 ]);
