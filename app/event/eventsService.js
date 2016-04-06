@@ -6,21 +6,21 @@ app.service('eventsService', eventsService);
 function eventsService() {
   var events = [
     {
-      title: 'An event',
+      title: 'wydarzenie1',
       type: 'warning',
       startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
       endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
       draggable: true,
       resizable: true
     }, {
-      title: 'Another event',
+      title: 'wydarzenie2',
       type: 'info',
       startsAt: moment().subtract(1, 'day').toDate(),
       endsAt: moment().add(5, 'days').toDate(),
       draggable: true,
       resizable: true
     }, {
-      title: 'This is a really long event title that occurs on every year',
+      title: 'wydarzenie3',
       type: 'important',
       startsAt: moment().startOf('day').add(7, 'hours').toDate(),
       endsAt: moment().startOf('day').add(19, 'hours').toDate(),

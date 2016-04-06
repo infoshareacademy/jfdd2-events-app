@@ -1,8 +1,15 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tmhDynamicLocale) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tmhDynamicLocale, calendarConfig) {
     var vm = this;
 
     tmhDynamicLocale.set('pl');
+    calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
+
+
+
+
+
+
 
     //Ustawienia kalendarza
     vm.calendarView = 'month';
@@ -69,3 +76,5 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService,tm
     }
 
 });
+
+

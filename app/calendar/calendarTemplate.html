@@ -1,3 +1,29 @@
+<script id="customMonthCell.html" type="text/ng-template">
+    <div class="cal-month-day">
+
+    <span
+            class="pull-right"
+            data-cal-date
+            ng-click="vm.calendarCtrl.dateClicked(day.date)"
+            ng-bind="day.label">
+    </span>
+        <small
+                class="cal-events-num badge badge-important pull-left"
+                ng-show="day.badgeTotal > 3"
+                ng-bind="day.badgeTotal">
+            <span ng-repeat="event in day.events">{{event.title}}<br></span>
+        </small>
+
+        <small style="position: absolute; bottom: 10px; left: 5px">
+
+            <span ng-show="day.badgeTotal <= 3" ng-repeat="event in day.events">{{event.title}}<br></span>
+
+        </small>
+
+    </div>
+</script>
+
+
 <!--CALENDAR-->
 <div class="col-md-8">
     <h2 class="text-center">{{ vm.calendarTitle }}</h2>
@@ -46,6 +72,7 @@
 
     <br>
 
+
     <mwl-calendar
             events="vm.events"
             view="vm.calendarView"
@@ -63,6 +90,7 @@
             day-view-split="30"
             cell-modifier="vm.modifyCell(calendarCell)">
     </mwl-calendar>
+
 
     <br><br><br>
 
@@ -121,7 +149,7 @@
                       type="button"
                       class="btn btn-default"
                       ng-click="vm.toggle($event, 'startOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
+                  <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
                 </p>
@@ -147,7 +175,7 @@
                       type="button"
                       class="btn btn-default"
                       ng-click="vm.toggle($event, 'endOpen', event)">
-                <i class="glyphicon glyphicon-calendar"></i>
+                  <i class="glyphicon glyphicon-calendar"></i>
               </button>
             </span>
                 </p>
