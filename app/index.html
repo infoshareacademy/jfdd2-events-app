@@ -24,46 +24,48 @@
 <div>
     <ul>
         <li ng-repeat="event in events | filter:search.category">{{event.category}}</li>
+        <li ng-repeat="event in events | filter:search.startDate.date">{{event.startDate.date}}</li>
     </ul>
 </div>
 <div class="search-menu">
 
     {{eventType}}
-    <select class="form-control" ng-model="search.category" ng-init="search.category = 'kino'">
+    <select class="form-control" ng-model="search.category" ng-init="search.category = ''">
         <option value=""> -- Rodzaj eventu --</option>
         <option value="kino">Kino</option>
         <option value="teatr">Teatr</option>
         <option value="muzyka">Muzyka</option>
         <option value="sztuka">Sztuka</option>
+        <option value="rozrywka">Rozrywka</option>
+        <option value="nauka">Nauka</option>
+        <option value="rekreacja">Rekreacja</option>
+        <option value="inne">Inne</option>
     </select>
 
 
-    <select class="form-control" ng-model="eventMonth">
-        <option disabled selected value> -- Miesiąc --</option>
-        <option>Styczeń</option>
-        <option>Luty</option>
-        <option>Marzec</option>
-        <option>Kwiecień</option>
-        <option>Maj</option>
-        <option>Czerwiec</option>
-        <option>Lipiec</option>
-        <option>Sierpień</option>
-        <option>Wrzesień</option>
-        <option>Październik</option>
-        <option>Listopad</option>
-        <option>Grudzień</option>
+    <!--<select class="form-control" ng-model="search.date" ng-init="search.date.Month = ">-->
+        <!--<option value=""> &#45;&#45; Miesiąc &#45;&#45;</option>-->
+        <!--<option value="">Styczeń</option>-->
+        <!--<option value="">Luty</option>-->
+        <!--<option value="">Marzec</option>-->
+        <!--<option value="">Kwiecień</option>-->
+        <!--<option value="">Maj</option>-->
+        <!--<option value="">Czerwiec</option>-->
+        <!--<option value="">Lipiec</option>-->
+        <!--<option value="">Sierpień</option>-->
+        <!--<option value="">Wrzesień</option>-->
+        <!--<option value="">Październik</option>-->
+        <!--<option value="">Listopad</option>-->
+        <!--<option value="">Grudzień</option>-->
+    <!--</select>-->
+
+    <select class="form-control" ng-model="search.startDate.date" ng-init="search.startDate = ''">
+        <option value=""> -- Godziny --</option>
+        <option value="">8:00-14:00</option>
+        <option value="">14:00-18:00</option>
+        <option value="">18:00-22:00</option>
     </select>
 
-    <select class="form-control" ng-model="eventHours">
-        <option disabled selected value> -- Godziny --</option>
-        <option>8:00-14:00</option>
-        <option>14:00-18:00</option>
-        <option>18:00-22:00</option>
-    </select>
-
-    <button type="submit" class="btn btn-default" ng-click="searchEvents()">
-        Szukaj
-    </button>
 </div>
 
 <div class="container">
