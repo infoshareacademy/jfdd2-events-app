@@ -7,5 +7,6 @@ var app = angular.module('myApp', [
   'mwl.calendar',
   // 'ngAnimate',
   'ui.bootstrap',
-  "oc.lazyLoad"
+  "oc.lazyLoad",
+  'LocalStorageModule'
 ]);
