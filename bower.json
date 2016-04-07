@@ -17,6 +17,7 @@
     "angular-touch": "^1.5.3",
     "interact": "^1.2.6",
     "angular-animate": "^1.5.3",
-    "angular-dynamic-locale": "^0.1.27"
+    "angular-dynamic-locale": "^0.1.27",
+    "oclazyload": "^1.0.9"
   }
 }
