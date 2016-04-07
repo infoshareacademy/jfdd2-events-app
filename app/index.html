@@ -18,16 +18,16 @@
 </head>
 <body>
 
-<div>
+<div ng-controller="searchMenu">
     <ul>
-        <li ng-repeat="type in events | filter:search.type">{{events.type}}</li>
+        <li ng-repeat="type in events.type | filter:type">{{events.type}}</li>
         <!--<li ng-repeat="event in events | filter:search.startDate.date">{{event.startDate.date}}</li>-->
     </ul>
 </div>
 <div class="search-menu">
 
     {{eventType}}
-    <select class="form-control" ng-model="search.type" ng-init="search.type = ''">
+    <select class="form-control" ng-model="type">
         <option value=""> -- Rodzaj eventu --</option>
         <option value="kino">Kino</option>
         <option value="koncert">Koncert</option>
