@@ -1,17 +1,20 @@
 
 <div class="modal-header">
     <h3 class="modal-title">Event action occurred!</h3>
+    <input type="text" ng-model="vm.login">
+    <button class="btn btn-warning" ng-click="vm.addToRec()">Polec znajomemu</button>
 </div>
 <div class="modal-body">
     <p>Action:
     <pre>{{ vm.action }}</pre>
     </p>
     <p>Event:
-    <pre>{{ vm.event | json }}</pre>
+    <pre>{{ vm.event.title | json }}</pre>
     </p>
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="$dismiss()">Zamknij</button>
     <button class="btn btn-success" ng-click="vm.addToFav()">Dodaj do ulubionych</button>
+
 </div>
     

@@ -1,5 +1,5 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig,localStorageService) {
 
     calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
 
@@ -15,22 +15,21 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     vm.tabs = [
         {
             title: 'Ulubione',
-            content: [
-                {
-                    title: 'Wydarzenie',
-                    type: 'warning',
-                    startsAt: moment().startOf('week').subtract(2, 'days').add(8, 'hours').toDate(),
-                    endsAt: moment().startOf('week').add(1, 'week').add(9, 'hours').toDate(),
-                    draggable: true,
-                    resizable: true
-                }
-            ]
+            content: localStorageService.get("ulubione") || []
 
         },
         {
-            title: 'Polecane', content: []
+            title: 'Polecane',
+            content: localStorageService.get("polecane") || []
         }
     ];
+
+
+    vm.submit = submit;
+
+    function submit(key, val) {
+        return localStorageService.set(key, val);
+    }
 
     //funkcje
     vm.eventClicked = eventClicked;
@@ -40,14 +39,9 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     vm.toggle = toggle;
 
     function eventClicked(event) {
-        var modalInstance = alert.show('Clicked', event);
-        console.log(event);
-        modalInstance.result.then(function (event) {
-            console.log(event);
-            vm.tabs[0].content.push(event);
-        
-        }
-        );
+        alert.show('Clicked', event);
+
+
     }
 
     function eventEdited(event) {
@@ -70,3 +64,5 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     }
 
 });
+
+
