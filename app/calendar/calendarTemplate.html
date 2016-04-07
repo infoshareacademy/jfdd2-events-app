@@ -20,7 +20,7 @@
             <span ng-show="day.badgeTotal <= 3" ng-repeat="event in day.events">{{event.title}}<br></span>
 
         </small>
-        <ng-include src="vm.calendarConfig.templates.calendarMonthCellEvents"></ng-include>
+        <!--<ng-include src="vm.calendarConfig.templates.calendarMonthCellEvents"></ng-include>-->
         <div id="cal-week-box" ng-if="$first && rowHovered">
             <span ng-bind="vm.calendarConfig.i18nStrings.weekNumber.replace('{week}', day.date.clone().add(1, 'day').isoWeek())"></span>
         </div>
