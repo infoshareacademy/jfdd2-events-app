@@ -122,3 +122,7 @@ function eventsService() {
     return events;
   }
 }
+
+//var app = angular.module('myApp', ['eventsService']).controller('searchMenu', function($scope) {
+//  $scope.events.type
+//});
