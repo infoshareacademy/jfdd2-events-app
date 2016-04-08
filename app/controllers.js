@@ -1,5 +1,21 @@
+app.controller('global', function ($scope, eventsService) {
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig) {
+});
+
+
+app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsService, calendarConfig) {
+
+    $scope.events = eventsService.getEvents();
+    $scope.filteredOutEvents = $scope.events;
+
+    $scope.pickType = function () {
+        console.log($scope.item);
+        $scope.filteredOutEvents = $scope.events.filter(function (event) {
+            return $scope.item === '' ? true : event.type === $scope.item;
+        });
+        vm.events = $scope.filteredOutEvents;
+
+    };
 
     calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
 
@@ -8,7 +24,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     //Ustawienia kalendarza
     vm.calendarView = 'month';
     vm.viewDate = new Date();
-    vm.events = eventsService.getEvents();
+    vm.events = $scope.filteredOutEvents;
     vm.isCellOpen = true;
 
     //Ulubione i Polecane

@@ -16,33 +16,31 @@
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 
 </head>
-<body>
+<body ng-controller="global">
 
-<!--<div ng-controller="searchMenu">-->
-    <ul>
-        <li ng-repeat="type in events.type | filter:type">{{events.type}}</li>
-        <!--<li ng-repeat="event in events | filter:search.startDate.date">{{event.startDate.date}}</li>-->
-    </ul>
-</div>
-<div class="searchMenu">
 
-    {{eventType}}
-    <select class="form-control" ng-model="type">
-        <option value=""> -- Rodzaj eventu --</option>
-        <option value="kino">Kino</option>
-        <option value="koncert">Koncert</option>
-        <option value="sport">Sport</option>
-        <option value="sztuka">Sztuka</option>
-        <option value="rozrywka">Rozrywka</option>
-        <option value="teatr">Teatr</option>
-    </select>
-</div>
 
 
 
 
 <language></language>
 <div class="container" ng-controller="KitchenSinkCtrl as vm">
+    <div class="searchMenu">
+
+        <ul>
+            <li ng-repeat="event in filteredOutEvents">{{event.type}}</li>
+        </ul>
+
+        <select class="form-control" ng-model="item" ng-change="pickType()">
+            <option value="">Wszystkie</option>
+            <option value="kino">Kino</option>
+            <option value="koncert">Koncert</option>
+            <option value="sport">Sport</option>
+            <option value="sztuka">Sztuka</option>
+            <option value="rozrywka">Rozrywka</option>
+            <option value="teatr">Teatr</option>
+        </select>
+    </div>
 <div class="row">
 <favorite></favorite>
 <calendar></calendar>
