@@ -1,5 +1,5 @@
 <!--HEADER-->
-<div class="col-md-4">
+<div class="col-md-4" ng-controller="favorite as vm">
     <div class="header clearfix text-center">
         <h1 class="text-muted">Task</h1>
     </div>
@@ -20,7 +20,7 @@
                                 <table class="table table-striped table-bordered">
                                     <tr ng-repeat="item in tab.content track by $index">
                                         <td>
-                                            {{item.title}}
+                                            {{item.event.title}}
                                         </td>
                                     </tr>
 
