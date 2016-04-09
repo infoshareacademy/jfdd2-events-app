@@ -5,3 +5,4 @@ app.controller('favorite', function(sharedFavorite) {
     vm.tabs = sharedFavorite.getFavorite();
 
 });
+

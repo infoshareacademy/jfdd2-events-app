@@ -24,24 +24,33 @@ app.factory('alert', function($uibModal,localStorageService,sharedFavorite) {
                     $uibModalInstance.close(vm.event);
                 };
                 vm.addToRec = function () {
-                    var eventArrWithoutFilter = localStorageService.get("polecane") || [];
+                    if (vm.login === "") {
+                        alert("Należy podać login znajomego");
 
-                    var recomenndedEvent = {
-                        login: vm.login,
-                        event: vm.event
-                                            
-                    };
-                    
-                    eventArrWithoutFilter.push(recomenndedEvent);
-                    localStorageService.set("polecane", eventArrWithoutFilter);
-                    //dopisuje tylko gdy login sie zgadza
-                    if(recomenndedEvent.login === "info") {
-                        sharedFavorite.setRecomended(recomenndedEvent);
+                    }else{
+
+
+                        var eventArrWithoutFilter = localStorageService.get("polecane") || [];
+
+                        var recomenndedEvent = {
+                            login: vm.login,
+                            event: vm.event
+
+                        };
+
+                        eventArrWithoutFilter.push(recomenndedEvent);
+                        localStorageService.set("polecane", eventArrWithoutFilter);
+                        //dopisuje tylko gdy login sie zgadza
+                        if (recomenndedEvent.login === "info") {
+                            sharedFavorite.setRecomended(recomenndedEvent);
+                        }
+
+                        $uibModalInstance.close(vm.event);
+
                     }
-                    
-                    $uibModalInstance.close(vm.event);
 
                 };
+
             },
 
             controllerAs: 'vm'
