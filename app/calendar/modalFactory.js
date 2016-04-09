@@ -9,33 +9,34 @@ app.factory('alert', function($uibModal,localStorageService) {
                 vm.event = event;
                 vm.login = "login znajomego";
                 vm.addToFav = function () {
+                    var eventArrWithoutFilter = localStorageService.get("ulubione") || [];
+
+                    var recomenndedEvent = {
+                        // login: "lukasz", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
+                        event: vm.event
+
+                    };
+
+                    eventArrWithoutFilter.push(recomenndedEvent);
+                    localStorageService.set("ulubione", eventArrWithoutFilter);
+
                     $uibModalInstance.close(vm.event);
-                    var eventArr = localStorageService.get("ulubione") || [];
-                    eventArr.push(vm.event);
-                    console.log(eventArr);
-                    localStorageService.set("ulubione", eventArr);
 
                 };
                 vm.addToRec = function () {
-                    $uibModalInstance.close(vm.event);
                     var eventArrWithoutFilter = localStorageService.get("polecane") || [];
 
-                    var eventArr= eventArrWithoutFilter.filter(function (recomenndedEvent){
+                    var recomenndedEvent = {
+                        login: vm.login,
+                        event: vm.event
+                                            
+                    };
+                    
+                    eventArrWithoutFilter.push(recomenndedEvent);
+                    localStorageService.set("polecane", eventArrWithoutFilter);
 
-                        return recomenndedEvent.login === "lukasz";
+                    $uibModalInstance.close(vm.event);
 
-
-                    });
-
-
-                    //var recomenndedEvent = {
-                    //    login: vm.login,
-                    //    event: vm.event
-                    //};
-                    //
-                    //eventArr.push(recomenndedEvent);
-                    //localStorageService.set("polecane", eventArr);
-                    console.log(eventArr);
                 };
             },
 

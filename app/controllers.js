@@ -12,6 +12,13 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     vm.isCellOpen = true;
 
     //Ulubione i Polecane
+
+    var eventArrWithoutFilter = localStorageService.get("polecane") || [];
+    var eventArr= eventArrWithoutFilter.filter(function (recomenndedEvent){
+
+        return recomenndedEvent.login === "lukasz";
+    });
+
     vm.tabs = [
         {
             title: 'Ulubione',
@@ -20,7 +27,7 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
         },
         {
             title: 'Polecane',
-            content: localStorageService.get("polecane") || []
+            content: eventArr
         }
     ];
 
