@@ -13,7 +13,7 @@ app.factory('alert', function($uibModal,localStorageService,sharedFavorite) {
                     var eventArrWithoutFilter = localStorageService.get("ulubione") || [];
 
                     var recomenndedEvent = {
-                        // login: "lukasz", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
+                        // login: "info", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
                         event: vm.event
 
                     };

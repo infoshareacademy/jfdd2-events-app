@@ -1,5 +1,5 @@
 <script id="customMonthCell.html" type="text/ng-template">
-    <div
+    <div id="changeFontSize"
             mwl-droppable
             on-drop="vm.handleEventDrop(dropData.event, day.date, dropData.draggedFromDate)"
             class="cal-month-day {{ day.cssClass }}"
@@ -26,7 +26,7 @@
                 class="cal-events-num badge badge-important pull-left"
                 ng-show="day.badgeTotal > 3"
                 ng-bind="day.badgeTotal">
-            <span ng-repeat="event in day.events">
+            <span id="czcionka" ng-repeat="event in day.events">
 
                    {{event.title}}</span>
         </small>

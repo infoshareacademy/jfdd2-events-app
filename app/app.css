@@ -1,5 +1,13 @@
-.searchMenu {
-    display: inline-block;
-    width: 250px;
-    float: right;
+body{
+    padding-top: 15px;
+}
+
+@media screen and (max-width: 360px){
+#changeFontSize small, .small {
+    font-size: 65%;
+}
+    body{
+        background-color: #00ee00;
+    }
+    
 }
