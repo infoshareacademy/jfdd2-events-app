@@ -1,4 +1,5 @@
-app.factory('alert', function($uibModal,localStorageService) {
+app.factory('alert', function($uibModal,localStorageService,sharedFavorite) {
+
 
     function show(action, event) {
         return $uibModal.open({
@@ -19,9 +20,8 @@ app.factory('alert', function($uibModal,localStorageService) {
 
                     eventArrWithoutFilter.push(recomenndedEvent);
                     localStorageService.set("ulubione", eventArrWithoutFilter);
-
+                    sharedFavorite.setFavorite(recomenndedEvent);
                     $uibModalInstance.close(vm.event);
-
                 };
                 vm.addToRec = function () {
                     var eventArrWithoutFilter = localStorageService.get("polecane") || [];
@@ -34,7 +34,11 @@ app.factory('alert', function($uibModal,localStorageService) {
                     
                     eventArrWithoutFilter.push(recomenndedEvent);
                     localStorageService.set("polecane", eventArrWithoutFilter);
-
+                    //dopisuje tylko gdy login sie zgadza
+                    if(recomenndedEvent.login === "info") {
+                        sharedFavorite.setRecomended(recomenndedEvent);
+                    }
+                    
                     $uibModalInstance.close(vm.event);
 
                 };

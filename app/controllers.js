@@ -1,5 +1,5 @@
 
-app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig,localStorageService) {
+app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, calendarConfig) {
 
     calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
 
@@ -11,32 +11,6 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     vm.events = eventsService.getEvents();
     vm.isCellOpen = true;
 
-    //Ulubione i Polecane
-
-    var eventArrWithoutFilter = localStorageService.get("polecane") || [];
-    var eventArr= eventArrWithoutFilter.filter(function (recomenndedEvent){
-
-        return recomenndedEvent.login === "lukasz";
-    });
-
-    vm.tabs = [
-        {
-            title: 'Ulubione',
-            content: localStorageService.get("ulubione") || []
-
-        },
-        {
-            title: 'Polecane',
-            content: eventArr
-        }
-    ];
-
-
-    vm.submit = submit;
-
-    function submit(key, val) {
-        return localStorageService.set(key, val);
-    }
 
     //funkcje
     vm.eventClicked = eventClicked;
@@ -47,7 +21,6 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
 
     function eventClicked(event) {
         alert.show('Clicked', event);
-
 
     }
 
@@ -71,5 +44,4 @@ app.controller('KitchenSinkCtrl', function(moment, alert, $log, eventsService, c
     }
 
 });
-
 
