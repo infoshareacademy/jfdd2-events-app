@@ -1,5 +1,21 @@
 <script id="customMonthCell.html" type="text/ng-template">
-
+    <div
+            mwl-droppable
+            on-drop="vm.handleEventDrop(dropData.event, day.date, dropData.draggedFromDate)"
+            class="cal-month-day {{ day.cssClass }}"
+            ng-class="{
+    'cal-day-outmonth': !day.inMonth,
+    'cal-day-inmonth': day.inMonth,
+    'cal-day-weekend': day.isWeekend,
+    'cal-day-past': day.isPast,
+    'cal-day-today': day.isToday,
+    'cal-day-future': day.isFuture
+  }">
+        <div class="cal-day-tick"
+             ng-show="dayIndex === vm.openDayIndex && vm.view[vm.openDayIndex].events.length > 0 && !vm.slideBoxDisabled">
+            <i class="glyphicon glyphicon-chevron-up"></i>
+            <i class="fa fa-chevron-up"></i>
+        </div>
     <span
             class="pull-right"
             data-cal-date
@@ -21,11 +37,11 @@
 
         </small>
         <!--<ng-include src="vm.calendarConfig.templates.calendarMonthCellEvents"></ng-include>-->
-        <div id="cal-week-box" ng-if="$first && rowHovered">
-            <span ng-bind="vm.calendarConfig.i18nStrings.weekNumber.replace('{week}', day.date.clone().add(1, 'day').isoWeek())"></span>
-        </div>
+        <!--<div id="cal-week-box" ng-if="$first && rowHovered">-->
+            <!--<span ng-bind="vm.calendarConfig.i18nStrings.weekNumber.replace('{week}', day.date.clone().add(1, 'day').isoWeek())"></span>-->
+        <!--</div>-->
 
-
+    </div>
 </script>
 
 
