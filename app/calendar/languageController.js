@@ -6,7 +6,7 @@ app.controller('i18nCtrl', function($scope, $window, $ocLazyLoad, calendarConfig
   vm.events = [];
   vm.calendarView = 'month';
   vm.viewDate = moment().startOf('month').toDate();
-
+  calendarConfig.allDateFormats.moment.date.hour = 'HH:mm';
   calendarConfig.dateFormatter = 'moment'; // use moment instead of angular for formatting dates
   var originali18n = angular.copy(calendarConfig.i18nStrings);
   calendarConfig.i18nStrings.weekNumber = 'Tydzień {week}';
