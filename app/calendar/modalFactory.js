@@ -64,6 +64,7 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                         eventArrWithoutFilter.push(recomenndedEvent);
 
                         localStorageService.set("ulubione", eventArrWithoutFilter);
+                        
                         sharedFavorite.setFavorite(recomenndedEvent);
                         $uibModalInstance.close(vm.event);
                     } else {

@@ -1,8 +1,8 @@
 body{
-    padding-top: 15px;
+    padding: 15px 0 15px;
 }
 
-@media screen and (max-width: 360px){
+@media screen and (max-width: 449px){
 #changeFontSize small, .small {
     font-size: 65%;
 }
