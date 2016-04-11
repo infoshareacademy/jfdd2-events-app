@@ -18,7 +18,7 @@ body{
     height:100%;
     position:absolute;
     z-index:200;
-    background-image: url("../photo/fajerwerki.jpg");
+    background-image: url("../app/photo/fajerwerki.jpg");
     /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";*/
     /*filter: alpha(opacity=50);*/
     /*-moz-opacity: 0.5;*/
