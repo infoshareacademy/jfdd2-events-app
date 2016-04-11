@@ -3,7 +3,7 @@
  */
 function onSuccess(googleUser) {
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-    $('loginBackground').hide();
+
 }
 
 function onSignIn(googleUser) {
@@ -12,6 +12,8 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail());
+    $("#loginWindow").hide();
+    $("#backcover").hide();
 }
 
 function renderButton() {

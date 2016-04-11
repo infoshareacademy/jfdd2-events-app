@@ -20,5 +20,8 @@
     "angular-dynamic-locale": "^0.1.27",
     "oclazyload": "^1.0.9",
     "angular-local-storage": "^0.2.7"
+  },
+  "resolutions": {
+    "angular": "1.5.3"
   }
 }
