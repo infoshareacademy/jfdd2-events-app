@@ -16,13 +16,18 @@
   <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet">
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
 
 </head>
 <body ng-controller="global">
 
-<div class="g-signin2" data-onsuccess="onSignIn"></div>
+<!--<div id="backcover"></div>-->
+<!--<div id="loginWindow">-->
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+  <!--<a href="#" onclick="signOut();">Sign out</a>-->
 
-<a href="#" onclick="signOut();">Sign out</a>
+<!--</div>-->
 
 <language></language>
 <div class="container" ng-controller="KitchenSinkCtrl as vm">
