@@ -11,24 +11,22 @@
     'cal-day-today': day.isToday,
     'cal-day-future': day.isFuture
   }">
-        <div class="cal-day-tick"
-             ng-show="dayIndex === vm.openDayIndex && vm.view[vm.openDayIndex].events.length > 0 && !vm.slideBoxDisabled">
-            <i class="glyphicon glyphicon-chevron-up"></i>
-            <i class="fa fa-chevron-up"></i>
-        </div>
+            <div class="cal-day-tick"
+                 ng-show="dayIndex === vm.openDayIndex && vm.view[vm.openDayIndex].events.length > 0 && !vm.slideBoxDisabled">
+                <i class="glyphicon glyphicon-chevron-up"></i>
+                <i class="fa fa-chevron-up"></i>
+            </div>
         <span
                 class="pull-right"
                 data-cal-date
                 ng-click="vm.calendarCtrl.dateClicked(day.date)"
                 ng-bind="day.label">
         </span>
-        <small
+        <small style="position: absolute; bottom: 10px; left: 5px"
                 class="cal-events-num badge badge-important pull-left"
                 ng-show="day.badgeTotal > 3"
                 ng-bind="day.badgeTotal">
-            <span id="czcionka" ng-repeat="event in events">
-
-                   {{event.title}}</span>
+            <span id="czcionka" ng-repeat="event in events">{{event.title}}</span>
         </small>
 
         <small style="position: absolute; bottom: 10px; left: 5px">
