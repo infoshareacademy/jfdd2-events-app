@@ -1,4 +1,4 @@
-app.service('sharedFavorite', function (localStorageService) {
+publicService = function(localStorageService) {
     var vm = this;
 //Ulubione i Polecane
 
@@ -32,10 +32,9 @@ app.service('sharedFavorite', function (localStorageService) {
         },
         setRecomended: function(value) {
             vm.tabs[1].content.push(value);
-
-
-
         }
-        
+
     };
-});
+};
+
+app.service('sharedFavorite', publicService);
