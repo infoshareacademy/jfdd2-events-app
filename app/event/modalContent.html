@@ -2,13 +2,14 @@
 <div class="modal-header">
     <button class="btn btn-warning" ng-click="vm.addToRec()">Polec znajomemu</button>
     <input type="text" placeholder="login znajomego" ng-model="vm.login">
+    <p>{{vm.statement}}</p>
 </div>
 <div class="modal-body">
     <!--<p>Action:-->
     <!--<pre>{{ vm.action }}</pre>-->
     <!--</p>-->
     <p>Event:
-    <pre>{{ vm.event.title | json }}</pre>
+    <pre>{{ vm.event.title}}</pre>
     </p>
 </div>
 <div class="modal-footer">
