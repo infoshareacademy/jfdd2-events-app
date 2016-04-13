@@ -22,7 +22,7 @@ publicService = function(localStorageService) {
 
     return {
         getFavorite: function () {
-            return vm.tabs;
+            return vm.tabs[0];
         },
         setFavorite: function(value) {
             vm.tabs[0].content.push(value);

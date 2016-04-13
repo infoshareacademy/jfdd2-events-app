@@ -1,4 +1,4 @@
-app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
+app.factory('alert', function ($uibModal, mockService, sharedFavorite) {
 
     function checkIfThereIsEvent(eventID, eventsFromLocalStorage) {
         var putOnFavorite = true;
