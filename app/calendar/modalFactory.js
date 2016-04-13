@@ -70,15 +70,20 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                         // login: "info", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
                         event: vm.event
 
+
                     };
 
 
                     if (checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
+                        
+                        // event.like++;
+
                         eventArrWithoutFilter.push(recomenndedEvent);
 
                         localStorageService.set("ulubione", eventArrWithoutFilter);
 
                         sharedFavorite.setFavorite(recomenndedEvent);
+                        
                         $uibModalInstance.close(vm.event);
                     } else {
                         showStatement("Te wydarzenie jest juz w ulubionych!");
@@ -100,6 +105,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
                         };
                         if (checkIfRecomended(event.id, eventArrWithoutFilter, recomenndedEvent.login) === true) {
+
+                            // event.recomended++;
 
                             eventArrWithoutFilter.push(recomenndedEvent);
                             localStorageService.set("polecane", eventArrWithoutFilter);
