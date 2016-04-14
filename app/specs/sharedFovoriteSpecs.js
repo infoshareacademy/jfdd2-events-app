@@ -20,7 +20,7 @@ QUnit.test('Dodawania ulubionych', function(assert) {
 QUnit.test('Dodanie tego samego elementu dwa razy', function(assert) {
   this.service.setFavorite('one');
   this.service.setFavorite('one');
-  assert.ok(this.service.getFavorite('one').content.length == 1, 'Mamy jeden element w ulubionych');
+  assert.equal(this.service.getFavorite('one').content.length, 1, 'Mamy jeden element w ulubionych');
 });
 
 
@@ -34,3 +34,4 @@ QUnit.test('Dodanie pustego elementu ze spacją', function(assert) {
   assert.equal(this.service.getFavorite().content.length, 0, 'Nie doda pustego elementu ze spacją');
 });
 
+//QUnit.test()
