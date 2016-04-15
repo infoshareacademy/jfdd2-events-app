@@ -54,7 +54,7 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
         $.ajax({
             url:'http://10.58.78.32:3000/posts/284',
             method: 'PATCH',
-              data: {"event[title]":recomenndedEvent.event.title},
+              data: {"event":{"title":recomenndedEvent.event.title}},
               dataType:"json",
               success: function(result) {
                   console.log(result)}
