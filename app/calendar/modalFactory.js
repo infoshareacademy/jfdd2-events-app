@@ -41,6 +41,26 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
     }
 
+    function sendFavoriteToServer(recomenndedEvent){
+          //$.ajax({
+          //    url:'http://10.58.78.32:3000/posts',
+          //    method: 'PATH',
+          //    data: recomenndedEvent,
+          //    dataType:"json",
+          //    success: function(result) {
+          //        console.log(result)}
+          //    });
+
+        $.ajax({
+            url:'http://10.58.78.32:3000/posts/284',
+            method: 'PATCH',
+              data: {"event[title]":recomenndedEvent.event.title},
+              dataType:"json",
+              success: function(result) {
+                  console.log(result)}
+              });
+        //console.log(recomenndedEvent.event.id);
+    }
     function showStatement (statement){
         return $uibModal.open({
             templateUrl: "event/modalForStatement.html",
@@ -80,7 +100,13 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
                         eventArrWithoutFilter.push(recomenndedEvent);
 
-                        localStorageService.set("ulubione", eventArrWithoutFilter);
+                        //localStorageService.set("ulubione", eventArrWithoutFilter);
+
+                        sendFavoriteToServer(recomenndedEvent);
+
+
+
+
 
                         sharedFavorite.setFavorite(recomenndedEvent);
                         
