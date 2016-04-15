@@ -16,8 +16,14 @@ publicService = function(localStorageService) {
         },
         {
             title: 'Polecane',
-            content: eventArr
+            content: localStorageService.get("Polecane") || []
+        },
+        {
+        title: 'Popularne',
+        content: localStorageService.get("Popularne") || []
         }
+
+
     ];
 
     return {
