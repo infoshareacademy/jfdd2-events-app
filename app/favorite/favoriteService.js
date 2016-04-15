@@ -39,6 +39,9 @@ publicService = function(localStorageService) {
         setRecomended: function(value) {
             vm.tabs[1].content.push(value);
         },
+      setPopular: function(value) {
+          vm.tabs[2].content.push(value);
+      },
 
         checkIfThereIsNotEvent: function(eventID, eventsFromLocalStorage) {
 
