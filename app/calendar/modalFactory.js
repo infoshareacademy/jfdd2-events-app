@@ -1,26 +1,5 @@
 app.factory('alert', function ($uibModal, mockService, sharedFavorite) {
 
-    function checkIfThereIsEvent(eventID, eventsFromLocalStorage) {
-        var putOnFavorite = true;
-
-        if (eventsFromLocalStorage.length === 0) {
-            putOnFavorite = true;
-        } else {
-            eventsFromLocalStorage.map(function (value, index) {
-
-                for (prop in eventsFromLocalStorage[index]) {
-
-                    if (eventsFromLocalStorage[index].event.id === eventID) {
-                        putOnFavorite = false;
-
-                    }
-
-                }
-            });
-        }
-        return putOnFavorite ? true : false;
-    }
-
     function checkIfRecomended(eventID, eventsFromLocalStorage, login) {
         var putOnFavorite = true;
 
@@ -60,7 +39,7 @@ app.factory('alert', function ($uibModal, mockService, sharedFavorite) {
                     };
 
 
-                    if (checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
+                    if (sharedFavorite.checkIfThereIsNotEvent(event.id, eventArrWithoutFilter) === true) {
                         eventArrWithoutFilter.push(recomenndedEvent);
 
                         localStorageService.set("ulubione", eventArrWithoutFilter);
@@ -115,3 +94,5 @@ app.factory('alert', function ($uibModal, mockService, sharedFavorite) {
     };
 
 });
+
+

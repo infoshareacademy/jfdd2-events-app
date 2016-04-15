@@ -18,20 +18,19 @@ QUnit.test('Dodawania ulubionych', function(assert) {
 });
 
 QUnit.test('Dodanie tego samego elementu dwa razy', function(assert) {
-  this.service.setFavorite('one');
-  this.service.setFavorite('one');
-  assert.equal(this.service.getFavorite('one').content.length, 1, 'Mamy jeden element w ulubionych');
+  // given:
+  var eventId = 684165432;
+  var event = {"event": { "id": eventId, "name": "testName"}};
+  var eventsFromLocalStorage = [];
+  eventsFromLocalStorage.push(event);
+
+  // when:
+  var checkResult = this.service.checkIfThereIsNotEvent(eventId, eventsFromLocalStorage);
+
+  // then:
+  assert.equal(checkResult, false, 'Mamy jeden element w ulubionych');
 });
 
 
-QUnit.test('Dodanie pustego elementu', function(assert) {
-  this.service.setFavorite('');
-  assert.equal(this.service.getFavorite().content.length, 0, 'Nie doda pustego elementu');
-});
-
-QUnit.test('Dodanie pustego elementu ze spacją', function(assert) {
-  this.service.setFavorite(' ');
-  assert.equal(this.service.getFavorite().content.length, 0, 'Nie doda pustego elementu ze spacją');
-});
 
 //QUnit.test()

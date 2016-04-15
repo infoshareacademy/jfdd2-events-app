@@ -32,9 +32,31 @@ publicService = function(localStorageService) {
         },
         setRecomended: function(value) {
             vm.tabs[1].content.push(value);
-        }
+        },
 
-    };
+        checkIfThereIsNotEvent: function(eventID, eventsFromLocalStorage) {
+
+        var putOnFavorite = true;
+
+        if (eventsFromLocalStorage.length === 0) {
+            putOnFavorite = true;
+        } else {
+            eventsFromLocalStorage.map(function (value, index) {
+
+                for (prop in eventsFromLocalStorage[index]) {
+
+                    if (eventsFromLocalStorage[index].event.id === eventID) {
+                        putOnFavorite = false;
+
+                    }
+
+                }
+            });
+        }
+        return putOnFavorite ? true : false;
+    }
+
+};
 };
 
 app.service('sharedFavorite', publicService);
