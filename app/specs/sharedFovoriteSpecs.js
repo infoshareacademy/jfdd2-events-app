@@ -1,12 +1,11 @@
 QUnit.module('SharedFavorite module', {
   beforeEach: function() {
-    this.mockService = {
-      get: function(key) {
+    var localStorageServiceMock = {
+      get: function (key) {
 
       }
     };
-    this.service = publicService(this.mockService);
-
+    this.service = sharedFavorite(localStorageServiceMock);
   }
 });
 

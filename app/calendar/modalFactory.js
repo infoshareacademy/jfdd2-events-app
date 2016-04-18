@@ -138,5 +138,3 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
     };
 
 });
-
-
