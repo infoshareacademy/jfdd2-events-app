@@ -1,4 +1,5 @@
-app.controller('global', function ($scope, eventsService) {
+app.controller('global', function ($scope, eventsService, $log) {
+    $log.info('kjhkhjkhkh');
 
 });
 

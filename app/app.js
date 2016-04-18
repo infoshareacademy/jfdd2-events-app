@@ -10,3 +10,13 @@ var app = angular.module('myApp', [
   "oc.lazyLoad",
   'LocalStorageModule'
 ]);
+
+app.config(function($logProvider){
+  $logProvider.debugEnabled(true);
+});
+
+app.controller('global', function($scope, $log ) {
+  //$scope.name = 'World';
+  //$scope.model = {value: "test"};
+  //$log.debug('TEST Log');
+});
