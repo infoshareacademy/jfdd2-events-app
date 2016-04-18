@@ -16,8 +16,14 @@ app.service('sharedFavorite', function (localStorageService) {
         },
         {
             title: 'Polecane',
-            content: eventArr
+            content: localStorageService.get("Polecane") || []
+        },
+        {
+        title: 'Popularne',
+        content: localStorageService.get("Popularne") || []
         }
+
+
     ];
 
     return {
@@ -32,8 +38,9 @@ app.service('sharedFavorite', function (localStorageService) {
         },
         setRecomended: function(value) {
             vm.tabs[1].content.push(value);
-
-
+        },
+        setPopular: function(value) {
+            vm.tabs[2].content.push(value);
 
         }
         

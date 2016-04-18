@@ -17,7 +17,8 @@ app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsSe
 
     };
 
-    calendarConfig.templates.calendarMonthCell = 'customMonthCell.html';
+    calendarConfig.templates.calendarMonthCell = 'calendar/customedElements/customMonthCell.html';
+    calendarConfig.templates.calendarSlideBox = 'calendar/customedElements/customSlideBox.html';
 
     var vm = this;
 

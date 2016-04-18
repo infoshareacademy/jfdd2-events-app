@@ -41,6 +41,18 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
     }
 
+    function showStatement (statement){
+        return $uibModal.open({
+            templateUrl: "event/modalForStatement.html",
+            size: "sm",
+            controller: function() {
+                var vm = this;
+                vm.statement = statement;
+            },
+            controllerAs: 'vm'
+        });
+    }
+
     function show(action, event) {
         return $uibModal.open({
             templateUrl: 'event/modalContent.html',
@@ -49,6 +61,7 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.action = action;
                 vm.event = event;
                 vm.login = "";
+
                 vm.addToFav = function () {
                     var eventArrWithoutFilter = localStorageService.get("ulubione") || [];
                     console.log(eventArrWithoutFilter);
@@ -57,24 +70,30 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                         // login: "info", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
                         event: vm.event
 
+
                     };
 
 
                     if (checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
+                        
+                        // event.like++;
+
                         eventArrWithoutFilter.push(recomenndedEvent);
 
                         localStorageService.set("ulubione", eventArrWithoutFilter);
-                        
+
                         sharedFavorite.setFavorite(recomenndedEvent);
+                        
                         $uibModalInstance.close(vm.event);
                     } else {
-                        alert("Te wydarzenie jest juz w ulubionych!");
+                        showStatement("Te wydarzenie jest juz w ulubionych!");
 
                     }
                 };
                 vm.addToRec = function () {
                     if (vm.login === "") {
-                        alert("Należy podać login znajomego!");
+                        showStatement("Należy podać login znajomego!");
+
 
                     } else {
 
@@ -87,6 +106,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                         };
                         if (checkIfRecomended(event.id, eventArrWithoutFilter, recomenndedEvent.login) === true) {
 
+                            // event.recomended++;
+
                             eventArrWithoutFilter.push(recomenndedEvent);
                             localStorageService.set("polecane", eventArrWithoutFilter);
                             //dopisuje tylko gdy login sie zgadza
@@ -96,7 +117,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
                             $uibModalInstance.close(vm.event);
                         } else {
-                            alert("Temu znajomemu juz poleciles te wydarzenie!");
+                            showStatement("Temu znajomemu juz poleciles te wydarzenie!");
+
 
                         }
 
@@ -111,7 +133,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
     }
 
     return {
-        show: show
+        show: show,
+        showStatement: showStatement
     };
 
 });
