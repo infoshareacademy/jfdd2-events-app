@@ -73,6 +73,39 @@ function eventsService() {
   }
 }
 
+
+function downloadEventsFromServer(thing){
+  return $.ajax({
+     url:'http://localhost:8030/' + thing,
+     method: 'GET',
+     // data: recomenndedEvent,
+     dataType:"json"
+     // success: function(result) {
+         // console.log(result);
+
+     // }
+     });
+}
+// function eventsService() {
+//
+// var events = [];
+//
+//
+//
+//   this.getEvents = function() {
+//     return $.when(downloadEventsFromServer("people"))
+//         .done(function(eventsFromServer) {
+//           console.debug(eventsFromServer);
+//           debugger
+//
+//           events = eventsFromServer ;
+//
+//         });
+//     // console.debug("dsadads" + events);
+//
+//
+//   }
+// }
 //var app = angular.module('myApp', ['eventsService']).controller('searchMenu', function($scope) {
 //  $scope.events.type
 //});
