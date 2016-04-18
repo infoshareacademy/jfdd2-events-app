@@ -51,7 +51,13 @@ body{
 
 #logoutButton {
     background-color: white;
-    border-radius: 20px;
     text-align: center;
     height: 33.9931px;
+    border-radius: 5px;
+}
+
+.text-center {
+    text-align: center;
+    position: relative;
+    margin: 0px;
 }
