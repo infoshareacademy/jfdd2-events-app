@@ -1,48 +1,12 @@
 app.service('sharedFavorite', function () {
   var vm = this;
-
+  var URL ='https://isa-api2.herokuapp.com/fav/events-info';
+  USER = 'info';
   vm.user = {
-    login: "info",
+    login: USER,
     favourite: [],
     recommended:[]
   };
-    //  vm.user = {
-  //  login: "info",
-  //  favourite: [{
-  //               title: 'Koncert',
-  //               type: 'koncert', //6 typow wydarzen koncert, sztuka, teatr, kino, sport, rozrywka
-  //               startsAt: new Date("April 01, 2016 18:00:00"), // data koniecznie w takim formacie
-  //               endsAt: new Date("April 01, 2016 22:00:00"), // data koniecznie w takim formacie
-  //               description : "opis",//tekst
-  //               image: "image URL",//link do obrazka
-  //               like: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //               recomended: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //               id: 1 //losowa wartosc
-  //            },
-  //            {
-  //              title: 'Koncert',
-  //              type: 'koncert', //6 typow wydarzen koncert, sztuka, teatr, kino, sport, rozrywka
-  //              startsAt: new Date("April 01, 2016 18:00:00"), // data koniecznie w takim formacie
-  //              endsAt: new Date("April 01, 2016 22:00:00"), // data koniecznie w takim formacie
-  //              description : "opis",//tekst
-  //              image: "image URL",//link do obrazka
-  //              like: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //              recomended: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //              id: 1 //losowa wartosc
-  //            }],
-  //  recommended:[{
-  //    title: 'Koncert',
-  //    type: 'koncert', //6 typow wydarzen koncert, sztuka, teatr, kino, sport, rozrywka
-  //    startsAt: new Date("April 01, 2016 18:00:00"), // data koniecznie w takim formacie
-  //    endsAt: new Date("April 01, 2016 22:00:00"), // data koniecznie w takim formacie
-  //    description : "opis",//tekst
-  //    image: "image URL",//link do obrazka
-  //    like: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //    recomended: 0,//zainicjalizowane zerem, mozliwosc wpisywania danych przez nas na serwer
-  //    id: 1 //losowa wartosc
-  //  }]
-  //};
-
 
   function checkIfThereIsNotEvent(eventID) {
     var putOnFavorite = true;
@@ -70,23 +34,21 @@ app.service('sharedFavorite', function () {
     getFavAndRecFromServer: function () {
       return $.ajax({
         type: 'GET',
-        url: 'http://localhost:8030/people',
+        //url: URL +'/people',//tutaj dodac konkretnego uzytkownika
+        url: URL,
         dataType: 'json',
-        success: function (favoriteThisUser) {
-
-          vm.user.favourite = favoriteThisUser.favourite;
-          vm.user.recommended = favoriteThisUser.recommended;
-
+        success: function (favAndRecThisUser) {
+          vm.user.favourite = favAndRecThisUser.result.favourite;
+          vm.user.recommended = favAndRecThisUser.result.recommended;
+          //console.log(favAndRecThisUser.result.recommended);
         }
-
       });
     },
+
     emptyFavoriteBox: function () {
       return vm.user
-
-
     }
-  }
+  };
 
 
   // $.when(getFavoriteFromServer())

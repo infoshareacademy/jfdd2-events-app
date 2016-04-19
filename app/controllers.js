@@ -8,6 +8,7 @@ app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsSe
     $scope.events = eventsService.getEvents();
     $scope.filteredOutEvents = $scope.events;
 
+    eventsService.getEventsFromServer();
     $scope.pickType = function () {
         console.log($scope.item);
         $scope.filteredOutEvents = $scope.events.filter(function (event) {
