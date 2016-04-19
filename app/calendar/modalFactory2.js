@@ -1,6 +1,6 @@
 app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
-   
+
     //
     // function checkIfRecomended(eventID, eventsFromLocalStorage, login) {
     //     var putOnFavorite = true;
@@ -22,11 +22,11 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
     //
     // }
 
-    function showStatement (statement){
+    function showStatement(statement) {
         return $uibModal.open({
             templateUrl: "event/modalForStatement.html",
             size: "sm",
-            controller: function() {
+            controller: function () {
                 var vm = this;
                 vm.statement = statement;
             },
@@ -44,19 +44,13 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.login = "";
 
                 vm.addToFav = function () {
-                    //console.log("dasdsadas");
-                    console.log("sharedfavourite" , sharedFavorite.getFavoriteFromServer());
-                    
-                    // if (setFavoritePlusValidation(event.id, event) === true) {
-                    //    
-                    //     $uibModalInstance.close(vm.event);
-                    //    
-                    // } else {
-                    //     showStatement("Te wydarzenie jest juz w ulubionych!");
-                    //
-                    // }
+                    if (sharedFavorite.setFavToServerWithValidation(event) === true) {
+                        $uibModalInstance.close(vm.event);
+                    } else {
+                        showStatement("to wydarzenie jest juz w ulubionych");
+                    }
                 };
-                
+
                 // vm.addToRec = function () {
                 //     if (vm.login === "") {
                 //         showStatement("Należy podać login znajomego!");
@@ -65,29 +59,6 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 //     } else {
                 //
                 //
-                //         var eventArrWithoutFilter = localStorageService.get("polecane") || [];
-                //         var recomenndedEvent = {
-                //             login: vm.login,
-                //             event: vm.event
-                //
-                //         };
-                //         if (checkIfRecomended(event.id, eventArrWithoutFilter, recomenndedEvent.login) === true) {
-                //
-                //             // event.recomended++;
-                //
-                //             eventArrWithoutFilter.push(recomenndedEvent);
-                //             localStorageService.set("polecane", eventArrWithoutFilter);
-                //             //dopisuje tylko gdy login sie zgadza
-                //             if (recomenndedEvent.login === "info") {
-                //                 sharedFavorite.setRecomended(recomenndedEvent);
-                //             }
-                //
-                //             $uibModalInstance.close(vm.event);
-                //         } else {
-                //             showStatement("Temu znajomemu juz poleciles te wydarzenie!");
-                //
-                //
-                //         }
                 //
                 //     }
                 //
