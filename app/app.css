@@ -54,6 +54,11 @@ body{
     text-align: center;
     height: 33.9931px;
     border-radius: 5px;
+    color: black;
+    border-top: 1px solid whitesmoke ;
+    border-right: 1px solid lightgrey ;
+    border-bottom: 1px solid lightgrey ;
+    border-left: 1px solid whitesmoke ;
 }
 
 .text-center {

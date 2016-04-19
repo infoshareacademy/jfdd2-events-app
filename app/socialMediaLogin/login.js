@@ -14,6 +14,7 @@ function onSignIn(googleUser) {
     console.log('Email: ' + profile.getEmail());
     $("#loginWindow").hide();
     $("#backcover").hide();
+    console.info('User logged in');
 }
 
 function renderButton() {
@@ -28,16 +29,16 @@ function renderButton() {
     });
 }
 
-function setURL(url){
-    document.getElementById('logoutframe').src = url;
-}
+//function setURL(url){
+//    document.getElementById('logoutframe').src = url;
+//}
 
 function onFailure(error) {
     console.log(error);
 }
 
-var button = document.getElementById('logoutButton');
-button.addEventListener('click', function() {
-        window.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://events.jfdd2.infoshareaca.nazwa.pl/";
-
-});
+//var button = document.getElementById('logoutButton');
+//button.addEventListener('click', function() {
+//        window.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://events.jfdd2.infoshareaca.nazwa.pl/";
+//
+//});

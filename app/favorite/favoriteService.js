@@ -32,12 +32,14 @@ app.service('sharedFavorite', function (localStorageService) {
         },
         setFavorite: function(value) {
             vm.tabs[0].content.push(value);
+            console.info('Added to favs');
         },
         getRecomended: function () {
             return vm.tabs;
         },
         setRecomended: function(value) {
             vm.tabs[1].content.push(value);
+            console.info('Added recommendation');
         },
         setPopular: function(value) {
             vm.tabs[2].content.push(value);

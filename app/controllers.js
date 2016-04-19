@@ -1,5 +1,5 @@
 app.controller('global', function ($scope, eventsService, $log) {
-    $log.info('kjhkhjkhkh');
+    $log.info('App login screen initiated');
 
 });
 
@@ -60,6 +60,7 @@ app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsSe
         $event.stopPropagation();
         event[field] = !event[field];
     }
+    $log.info('Events being scoped, calendar being built');
 
 });
 
