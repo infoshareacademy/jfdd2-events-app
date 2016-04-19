@@ -20,8 +20,9 @@ app.controller('favoriteController', favoriteController);
         var vm = this;
 //Ulubione i Polecane
 
-        vm.tabs = sharedFavorite.getFavorite();
-        console.log(vm.tabs[0]);
+        vm.user = sharedFavorite.emptyFavoriteBox();
+        sharedFavorite.getFavAndRecFromServer();
+        //console.log(vm.tabs[0]);
         vm.clicked = function (whichEvent) {
             alert.show('Clicked', whichEvent);
         }

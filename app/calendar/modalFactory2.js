@@ -44,8 +44,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.login = "";
 
                 vm.addToFav = function () {
-                    console.log("dasdsadas");
-                    sharedFavorite.getFavoriteFromServer();
+                    //console.log("dasdsadas");
+                    console.log("sharedfavourite" , sharedFavorite.getFavoriteFromServer());
                     
                     // if (setFavoritePlusValidation(event.id, event) === true) {
                     //    
