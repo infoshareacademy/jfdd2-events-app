@@ -46,10 +46,16 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.addToFav = function () {
                     if (sharedFavorite.setFavToServerWithValidation(event) === true) {
                         $uibModalInstance.close(vm.event);
-                    } else {
+                    }
+                    if (sharedFavorite.setFavToServerWithValidation(event) === false) {
+
                         showStatement("to wydarzenie jest juz w ulubionych");
                     }
-                };
+                    if (sharedFavorite.setFavToServerWithValidation(event) === -1) {
+                        $uibModalInstance.close(vm.event);
+
+                    }
+                }
 
                 // vm.addToRec = function () {
                 //     if (vm.login === "") {
