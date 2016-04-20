@@ -1,26 +1,5 @@
 app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
-    function checkIfThereIsEvent(eventID, eventsFromLocalStorage) {
-        var putOnFavorite = true;
-
-        if (eventsFromLocalStorage.length === 0) {
-            putOnFavorite = true;
-        } else {
-            eventsFromLocalStorage.map(function (value, index) {
-
-                for (prop in eventsFromLocalStorage[index]) {
-
-                    if (eventsFromLocalStorage[index].event.id === eventID) {
-                        putOnFavorite = false;
-
-                    }
-
-                }
-            });
-        }
-        return putOnFavorite ? true : false;
-    }
-
     function checkIfRecomended(eventID, eventsFromLocalStorage, login) {
         var putOnFavorite = true;
 
@@ -74,8 +53,8 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                     };
 
 
-                    if (checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
-                        
+                    if (sharedFavorite.checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
+
                         // event.like++;
 
                         eventArrWithoutFilter.push(recomenndedEvent);
@@ -83,7 +62,7 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                         localStorageService.set("ulubione", eventArrWithoutFilter);
 
                         sharedFavorite.setFavorite(recomenndedEvent);
-                        
+
                         $uibModalInstance.close(vm.event);
                     } else {
                         showStatement("Te wydarzenie jest juz w ulubionych!");

@@ -1,4 +1,4 @@
-app.service('sharedFavorite', function (localStorageService) {
+var sharedFavorite = function (localStorageService) {
     var vm = this;
 //Ulubione i Polecane
 
@@ -19,8 +19,8 @@ app.service('sharedFavorite', function (localStorageService) {
             content: localStorageService.get("Polecane") || []
         },
         {
-        title: 'Popularne',
-        content: localStorageService.get("Popularne") || []
+            title: 'Popularne',
+            content: localStorageService.get("Popularne") || []
         }
 
 
@@ -41,8 +41,28 @@ app.service('sharedFavorite', function (localStorageService) {
         },
         setPopular: function(value) {
             vm.tabs[2].content.push(value);
+        },
+        checkIfThereIsEvent: function (eventID, eventsFromLocalStorage) {
+            var putOnFavorite = true;
 
+            if (eventsFromLocalStorage.length === 0) {
+                putOnFavorite = true;
+            } else {
+                eventsFromLocalStorage.map(function (value, index) {
+
+                    for (prop in eventsFromLocalStorage[index]) {
+
+                        if (eventsFromLocalStorage[index].event.id === eventID) {
+                            putOnFavorite = false;
+
+                        }
+
+                    }
+                });
+            }
+            return putOnFavorite ? true : false;
         }
-        
     };
-});
+};
+
+app.service('sharedFavorite', sharedFavorite);
