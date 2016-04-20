@@ -44,31 +44,22 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.login = "";
 
                 vm.addToFav = function () {
-                    if (sharedFavorite.setFavToServerWithValidation(event) === true) {
-                        $uibModalInstance.close(vm.event);
-                    }
-                    if (sharedFavorite.setFavToServerWithValidation(event) === false) {
-
-                        showStatement("to wydarzenie jest juz w ulubionych");
-                    }
-                    if (sharedFavorite.setFavToServerWithValidation(event) === -1) {
-                        $uibModalInstance.close(vm.event);
-
-                    }
+                    sharedFavorite.setFavToServerWithValidation(event);
+                    $uibModalInstance.close(vm.event);
                 }
 
-                // vm.addToRec = function () {
-                //     if (vm.login === "") {
-                //         showStatement("Należy podać login znajomego!");
-                //
-                //
-                //     } else {
-                //
-                //
-                //
-                //     }
-                //
-                // };
+                vm.addToRec = function () {
+                    if (vm.login === "") {
+                        showStatement("Należy podać login znajomego!");
+
+                    } else {
+                        sharedFavorite.setRecToServerWithValidation(event, vm.login);
+                        $uibModalInstance.close(vm.event);
+
+
+                    }
+
+                };
 
             },
 

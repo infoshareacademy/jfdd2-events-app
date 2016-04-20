@@ -2,7 +2,54 @@
  * Created by ScipioAfricanus on 2016-04-10.
  */
 var USER;
-var URL = 'https://isa-api2.herokuapp.com/fav/events-';
+var URL = 'http://isa-api-sl.herokuapp.com/api';
+
+var user = {
+    "favourite": [],
+    "recommended": []
+};
+function checkLogIn() {
+    $.ajax({
+            type: 'GET',
+            url: URL + '/favs?filter[where][appId]=events&filter[where][userId]=' + USER,
+            dataType: 'json'
+
+        })
+        .done(function (result) {
+            if (result.length != 0) {
+                user.favourite = [];
+                result.forEach(function (val) {
+                    user.favourite.push(val);
+
+                });
+
+            }
+        }).error(function (msg) {
+        console.log(msg)
+    });
+
+
+    $.ajax({
+            type: 'GET',
+            url: URL + '/recommendations?filter[where][appId]=events&filter[where][receiverId]=' + USER,
+            dataType: 'json'
+        })
+        .done(function (result) {
+            if (result.length != 0) {
+                user.recommended = [];
+                result.forEach(function (val) {
+                    user.recommended.push(val);
+                });
+
+
+            }
+
+        })
+        .error(function (msg) {
+            console.log(msg)
+        });
+}
+
 function onSuccess(googleUser) {
 
     console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
@@ -10,7 +57,7 @@ function onSuccess(googleUser) {
 
 }
 
-function onSignIn(googleUser,sharedFavorite) {
+function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
@@ -20,52 +67,10 @@ function onSignIn(googleUser,sharedFavorite) {
     $("#loginWindow").hide();
     $("#backcover").hide();
 
+    checkLogIn();
 
 
-
-
-
-    checkOnLogin = function() {
-        $.ajax({
-            type: 'GET',
-            url: URL + USER,
-            dataType: 'json',
-            success: function(favAndRecThisUser) {
-                debugger
-                if (favAndRecThisUser.result != undefined){
-                    if (favAndRecThisUser.result.favourite != undefined){
-                        //sharedFavorite.vm.user.favourite = favAndRecThisUser.result.favourites;
-                    }
-                    if (favAndRecThisUser.result.recommended != undefined){
-                        //recommended = favAndRecThisUser.result.recommended;
-                    }
-                } else {
-                    $.ajax({
-                        type: 'POST',
-                        url: URL + USER,
-                        dataType: 'json',
-                        data: favAndRecThisUser.result,
-                        success: function () {
-                            console.log("dodano nowego użytkownika")
-
-                        },
-                        error: function (){
-                            console.log("dodano nowego użytkownika")
-
-                        }
-
-                    });
-                }
-            }
-        });
-    };
-    checkOnLogin();
-    //console.log(sharedFavorite.emptyFavoriteBox())
 }
-
-
-
-
 
 
 function renderButton() {

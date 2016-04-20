@@ -16,13 +16,26 @@ app.directive('favorite', favorite);
 
 app.controller('favoriteController', favoriteController);
 
-    function favoriteController(sharedFavorite,alert) {
+    function favoriteController(alert) {
         var vm = this;
 //Ulubione i Polecane
+        vm.user=user;
 
-        vm.user = sharedFavorite.emptyFavoriteBox();
-        sharedFavorite.getFavAndRecFromServer();
-        //console.log(vm.tabs[0]);
+
+
+// {
+//
+//     "favourite": [{
+//         "objectId": "Sport",
+//         "type": "sport",
+//         "startsAt": "new Data(April 05, 2016 18:00:00)",
+//         "endsAt": "new Data(April 05, 2016 22:00:00)",
+//         "description" : "opis",
+//         "image": "image URL",
+//         "id": 1}]
+//
+// }
+
         vm.clicked = function (whichEvent) {
             alert.show('Clicked', whichEvent);
         }
