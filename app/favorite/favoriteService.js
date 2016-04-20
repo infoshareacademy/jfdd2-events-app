@@ -28,7 +28,7 @@ var sharedFavorite = function (localStorageService) {
 
     return {
         getFavorite: function () {
-            return vm.tabs[0];
+            return vm.tabs;
         },
         setFavorite: function(value) {
             vm.tabs[0].content.push(value);
@@ -41,6 +41,26 @@ var sharedFavorite = function (localStorageService) {
         },
         setPopular: function(value) {
             vm.tabs[2].content.push(value);
+        },
+        checkIfThereIsEvent: function (eventID, eventsFromLocalStorage) {
+            var putOnFavorite = true;
+
+            if (eventsFromLocalStorage.length === 0) {
+                putOnFavorite = true;
+            } else {
+                eventsFromLocalStorage.map(function (value, index) {
+
+                    for (prop in eventsFromLocalStorage[index]) {
+
+                        if (eventsFromLocalStorage[index].event.id === eventID) {
+                            putOnFavorite = false;
+
+                        }
+
+                    }
+                });
+            }
+            return putOnFavorite ? true : false;
         }
     };
 };
