@@ -1,7 +1,5 @@
-app.service('sharedFavorite', function () {
+function sharedFavorite () {
   var vm = this;
-  var URL = 'https://isa-api2.herokuapp.com/fav/events-';
-  var USER = "info";
   vm.user = {
     "login": USER,
     "favourite": [],
@@ -54,27 +52,27 @@ app.service('sharedFavorite', function () {
   function checkIfThereIsNotEvent(event) {
     var putOnFavorite = true;
 // debugger
-        if (vm.user.favourite == undefined) {
-             //debugger
-            console.log("wykryl ze jest undefined");
-            $.ajax({
-                    type: 'POST',
-                    url: URL + USER,
-                    data: {"login" : USER, "favourite" : [event],"recommended": [""]},
-                    dataType: 'json'
-                })
-                .done(function () {
-                     angular.copy(event,vm.user.favourite);
-                     angular.copy([""],vm.user.recommended);
+    if (vm.user.favourite == undefined) {
+      //debugger
+      console.log("wykryl ze jest undefined");
+      $.ajax({
+          type: 'POST',
+          url: URL + USER,
+          data: {"login" : USER, "favourite" : [event],"recommended": [""]},
+          dataType: 'json'
+        })
+        .done(function () {
+          angular.copy(event,vm.user.favourite);
+          angular.copy([""],vm.user.recommended);
 
-                })
-                .error(function (msg) {
-                    console.error(msg);
-                });
-            putOnFavorite = "inicjalizacja";
-        }
-        else
-        if (vm.user.favourite.length === 0) {
+        })
+        .error(function (msg) {
+          console.error(msg);
+        });
+      putOnFavorite = "inicjalizacja";
+    }
+    else
+    if (vm.user.favourite.length === 0) {
       putOnFavorite = true;
     } else {
       vm.user.favourite.map(function (value, index) {
@@ -150,15 +148,13 @@ app.service('sharedFavorite', function () {
     },
 
     setFavToServerWithValidation: function (currentlyEvent) {
-      // checkIfAccountIsEmpty();
-//console.log("wynik funkcji empty",checkIfAccountIsEmpty(currentlyEvent));
 
-      if(checkIfThereIsNotEvent(currentlyEvent)) {
-        console.log("tablica lokalna pusta");
-      }else{
 
-          console.log("nie jest pusta");
-      }
+
+
+
+
+
 
 
       //if (checkIfThereIsNotEvent(currentlyEvent) === "inicjalizacja") {
@@ -183,4 +179,5 @@ app.service('sharedFavorite', function () {
 
     }
   };
-});
+};
+app.service('sharedFavorite', sharedFavorite );
