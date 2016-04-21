@@ -1,68 +1,110 @@
-var sharedFavorite = function (localStorageService) {
-    var vm = this;
+app.service('sharedFavorite', sharedFavorite );
+function sharedFavorite () {
+  var vm = this;
+
+
+
 //Ulubione i Polecane
+  return {
+    setFavToServerWithValidation: function (currentEvent) {
+        $.ajax({
+            type: "GET",
+            url: URL + '/favs?filter[where][appId]=events&filter[where][id]=' + currentEvent.id + '&filter[where][userId]=' + USER,
+            dataType: 'json',
+        success: function (result) {
+            if (result.length === 0) {
+                // debugger;
+                console.log("tego wydarzenia nie ma w ulubuionych");
+                toFav = {
+                    "appId": "events",
+                    "objectType": "favourite",
+                    "objectId": currentEvent.title,
+                    "userId": USER,
+                    "id": currentEvent.id
 
-    var eventArrWithoutFilter = localStorageService.get("polecane") || [];
-    var eventArr= eventArrWithoutFilter.filter(function (recomenndedEvent){
+                };
 
-        return recomenndedEvent.login === "info";
-    });
-
-    vm.tabs = [
-        {
-            title: 'Ulubione',
-            content: localStorageService.get("ulubione") || []
-
-        },
-        {
-            title: 'Polecane',
-            content: localStorageService.get("Polecane") || []
-        },
-        {
-            title: 'Popularne',
-            content: localStorageService.get("Popularne") || []
-        }
-
-
-    ];
-
-    return {
-        getFavorite: function () {
-            return vm.tabs;
-        },
-        setFavorite: function(value) {
-            vm.tabs[0].content.push(value);
-        },
-        getRecomended: function () {
-            return vm.tabs;
-        },
-        setRecomended: function(value) {
-            vm.tabs[1].content.push(value);
-        },
-        setPopular: function(value) {
-            vm.tabs[2].content.push(value);
-        },
-        checkIfThereIsEvent: function (eventID, eventsFromLocalStorage) {
-            var putOnFavorite = true;
-
-            if (eventsFromLocalStorage.length === 0) {
-                putOnFavorite = true;
-            } else {
-                eventsFromLocalStorage.map(function (value, index) {
-
-                    for (prop in eventsFromLocalStorage[index]) {
-
-                        if (eventsFromLocalStorage[index].event.id === eventID) {
-                            putOnFavorite = false;
-
-                        }
-
+                $.ajax({
+                    type: 'POST',
+                    url: URL + '/favs',
+                    dataType: 'json',
+                    data: toFav,
+                    success: function () {
+                        checkLogIn();
+                        // user.favourite.push(currentEvent.title);
                     }
                 });
             }
-            return putOnFavorite ? true : false;
         }
-    };
-};
+        })
 
-app.service('sharedFavorite', sharedFavorite);
+
+    },
+      setRecToServerWithValidation: function (currentEvent,receiverLogin) {
+          $.ajax({
+              type: 'get',
+              url: URL + '/recommendations?filter[where][appId]=events&filter[where][id]=' + currentEvent.id +
+              '&filter[where][receiverId]=' + receiverLogin + '&filter[where][senderId]=' + USER,
+              dataType: 'json',
+              success: function (result) {
+                  if (result.length === 0) {
+                      toRec = {
+                          "appId": "events",
+                          "senderId": USER,
+                          "receiverId": receiverLogin,
+                          "objectType": "recommendation",
+                          "objectId": currentEvent.title,
+                          "id": currentEvent.id
+                      };
+
+                      $.ajax({
+                          type: 'POST',
+                          url: URL + '/recommendations',
+                          dataType: 'json',
+                          data: toRec,
+                          success: function () {
+
+                              checkLogIn();
+                              // user.recommended.push(currentEvent.title);
+                          }
+                      });
+                  }
+              }
+          });
+          
+      }
+  };
+}
+
+
+
+// $scope.AddToFavourites = function () {
+//     $.ajax({
+//         type: 'get',
+//         url: URL + '/favs?filter[where][appId]=monuments&filter[where][objectId]=' + object.name + '&filter[where][userId]=' + login,
+//         dataType: 'json',
+//         success: function (result) {
+//             if (result.length === 0) {
+//                 debugger;
+//                 toAdd = {
+//                     "appId": "monuments",
+//                     "objectType": "favourite",
+//                     "objectId": object.name,
+//                     "userId": login,
+//                     "id": 0
+//                 };
+//                 $.ajax({
+//                     type: 'POST',
+//                     url: URL + '/favs',
+//                     dataType: 'json',
+//                     data: toAdd,
+//                     success: function () {
+//                         checkOnLogin();
+//                     }
+//                 });
+//             }
+//         }
+//     });
+//
+//
+// };
