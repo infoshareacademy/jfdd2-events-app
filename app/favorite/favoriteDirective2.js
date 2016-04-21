@@ -4,7 +4,7 @@ app.directive('favorite', favorite);
     function favorite() {
         return {
             restrict: 'EAC',
-            templateUrl: 'favorite/favorite2.html',
+            templateUrl: 'favorite/favorite.html',
             controller: favoriteController
         }
     }
