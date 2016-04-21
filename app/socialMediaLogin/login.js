@@ -105,3 +105,9 @@ function signOut() {
 function onFailure(error) {
     console.log(error);
 }
+
+//var button = document.getElementById('logoutButton');
+//button.addEventListener('click', function() {
+//        window.location.href = "https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://events.jfdd2.infoshareaca.nazwa.pl/";
+//
+//});
