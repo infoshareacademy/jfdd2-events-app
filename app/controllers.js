@@ -5,10 +5,12 @@ app.controller('global', function ($scope, eventsService) {
 
 app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsService, calendarConfig) {
 
-    $scope.events = eventsService.getEvents();
-    $scope.filteredOutEvents = $scope.events;
 
-    eventsService.getEventsFromServer();
+    eventsService.getEventsFromServer().done(function () {
+        $scope.events = eventsService.getEvents();
+        $scope.filteredOutEvents = $scope.events;
+        vm.events = $scope.filteredOutEvents;
+    });
     $scope.pickType = function () {
         console.log($scope.item);
         $scope.filteredOutEvents = $scope.events.filter(function (event) {

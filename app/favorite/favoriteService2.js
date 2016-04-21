@@ -1,11 +1,6 @@
 app.service('sharedFavorite', sharedFavorite );
 function sharedFavorite () {
   var vm = this;
-  user = {
-    "login": USER,
-    "favourite": [],
-    "recommended": []
-  };
 
 
 

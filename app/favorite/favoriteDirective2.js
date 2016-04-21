@@ -16,25 +16,16 @@ app.directive('favorite', favorite);
 
 app.controller('favoriteController', favoriteController);
 
-    function favoriteController(alert) {
+    function favoriteController($scope,alert) {
         var vm = this;
 //Ulubione i Polecane
-        vm.user=user;
+        checkLogIn().then(function (){
+            console.log('user ready to set')
+            $scope.user=user;
+            $scope.$apply();
+        });
 
 
-
-// {
-//
-//     "favourite": [{
-//         "objectId": "Sport",
-//         "type": "sport",
-//         "startsAt": "new Data(April 05, 2016 18:00:00)",
-//         "endsAt": "new Data(April 05, 2016 22:00:00)",
-//         "description" : "opis",
-//         "image": "image URL",
-//         "id": 1}]
-//
-// }
 
         vm.clicked = function (whichEvent) {
             alert.show('Clicked', whichEvent);
