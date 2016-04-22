@@ -44,20 +44,26 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.login = "";
 
                 vm.addToFav = function () {
-                    sharedFavorite.setFavToServerWithValidation(event);
-                    $uibModalInstance.close(vm.event);
+                    
+    sharedFavorite.setFavToServerWithValidation(event,showStatement("Te wydarzenie jest już w ulubionych!"));
+                        $uibModalInstance.close(vm.event);
+                   
+                        // showStatement('Te wydarzenie jest już w ulubionych!')
+                    
                 }
 
                 vm.addToRec = function () {
                     if (vm.login === "") {
                         showStatement("Należy podać login znajomego!");
 
-                    } else {
-                        sharedFavorite.setRecToServerWithValidation(event, vm.login);
-                        $uibModalInstance.close(vm.event);
+                    } else{
+                        
+                             sharedFavorite.setRecToServerWithValidation(event,vm.login,showStatement("Te wydarzenie zostało polecone użytkownikowi " + vm.login));
+                             $uibModalInstance.close(vm.event);
+                        }
 
 
-                    }
+                    
 
                 };
 
