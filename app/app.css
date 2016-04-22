@@ -18,7 +18,7 @@ body{
     height:100%;
     position:absolute;
     z-index:200;
-    background-image: url("../photo/fajerwerki.jpg");
+    background-image: url("../app/photo/fajerwerki.jpg");
     /*-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";*/
     /*filter: alpha(opacity=50);*/
     /*-moz-opacity: 0.5;*/
@@ -47,6 +47,24 @@ body{
 
 .g-signin2 {
     margin-left: 90px;
+}
+
+#logoutButton {
+    background-color: white;
+    text-align: center;
+    height: 33.9931px;
+    border-radius: 5px;
+    color: black;
+    border-top: 1px solid whitesmoke ;
+    border-right: 1px solid lightgrey ;
+    border-bottom: 1px solid lightgrey ;
+    border-left: 1px solid whitesmoke ;
+}
+
+.text-center {
+    text-align: center;
+    position: relative;
+    margin: 0px;
 }
 .images{
     max-height: 250px;
