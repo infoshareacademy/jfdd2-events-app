@@ -48,3 +48,7 @@ body{
 .g-signin2 {
     margin-left: 90px;
 }
+.images{
+    max-height: 250px;
+    width: 100%;
+}

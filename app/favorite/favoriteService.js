@@ -9,29 +9,32 @@ function sharedFavorite () {
     setFavToServerWithValidation: function (currentEvent) {
         $.ajax({
             type: "GET",
-            url: URL + '/favs?filter[where][appId]=events&filter[where][id]=' + currentEvent.id + '&filter[where][userId]=' + USER,
+            url: urlPrefix + '/favs?filter[where][appId]=events&filter[where][id]=' + currentEvent.id + '&filter[where][userId]=' + usernameStr,
             dataType: 'json',
         success: function (result) {
             if (result.length === 0) {
-                // debugger;
                 console.log("tego wydarzenia nie ma w ulubuionych");
                 toFav = {
                     "appId": "events",
                     "objectType": "favourite",
                     "objectId": currentEvent.title,
-                    "userId": USER,
+                    "userId": usernameStr,
                     "id": currentEvent.id
 
                 };
+                console.log(userFavRec);
 
                 $.ajax({
                     type: 'POST',
-                    url: URL + '/favs',
+                    url: urlPrefix + '/favs',
                     dataType: 'json',
                     data: toFav,
                     success: function () {
-                        checkLogIn();
-                        // user.favourite.push(currentEvent.title);
+                        currentEvent.objectId = currentEvent.title;
+                        userFavRec.favorite.push(currentEvent);
+                        console.log("uFR",userFavRec.favorite);
+                        console.log("CV",currentEvent)
+
                     }
                 });
             }
@@ -43,14 +46,14 @@ function sharedFavorite () {
       setRecToServerWithValidation: function (currentEvent,receiverLogin) {
           $.ajax({
               type: 'get',
-              url: URL + '/recommendations?filter[where][appId]=events&filter[where][id]=' + currentEvent.id +
-              '&filter[where][receiverId]=' + receiverLogin + '&filter[where][senderId]=' + USER,
+              url: urlPrefix + '/recommendations?filter[where][appId]=events&filter[where][id]=' + currentEvent.id +
+              '&filter[where][receiverId]=' + receiverLogin + '&filter[where][senderId]=' + usernameStr,
               dataType: 'json',
               success: function (result) {
                   if (result.length === 0) {
                       toRec = {
                           "appId": "events",
-                          "senderId": USER,
+                          "senderId": usernameStr,
                           "receiverId": receiverLogin,
                           "objectType": "recommendation",
                           "objectId": currentEvent.title,
@@ -59,12 +62,12 @@ function sharedFavorite () {
 
                       $.ajax({
                           type: 'POST',
-                          url: URL + '/recommendations',
+                          url: urlPrefix + '/recommendations',
                           dataType: 'json',
                           data: toRec,
                           success: function () {
 
-                              checkLogIn();
+                              //checkLogIn();
                               // user.recommended.push(currentEvent.title);
                           }
                       });

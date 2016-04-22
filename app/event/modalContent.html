@@ -8,9 +8,13 @@
     <!--<p>Action:-->
     <!--<pre>{{ vm.action }}</pre>-->
     <!--</p>-->
-    <p>Event:
+    <p>Wydarzenie:
     <pre>{{ vm.event.title}}</pre>
     </p>
+    <p>Opis:
+    <pre>{{ vm.event.description}}</pre>
+    </p>
+    <img src="{{vm.event.image}}" alt="" class="images">
 </div>
 <div class="modal-footer">
     <button class="btn btn-primary" ng-click="$dismiss()">Zamknij</button>
