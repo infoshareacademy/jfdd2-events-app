@@ -68,7 +68,6 @@ userName.done(function (userNameString) {
             };
           });
           for (var itemName in accumulator) {
-            console.log(items);
             if (accumulator.hasOwnProperty(itemName)) {
               items.push({
                 name: itemName,
@@ -83,7 +82,6 @@ userName.done(function (userNameString) {
             return b.occurrences - a.occurrences
           });
           popular.resolve(items);
-          console.log("items" + items);
         });
 
     });
@@ -96,7 +94,6 @@ userName.done(function (userNameString) {
         popular: popularData
 
       });
-      //console.log(user.popular)
     });
 
   });
@@ -118,7 +115,6 @@ userName.done(function (userNameString) {
     userName.resolve(profile.getEmail());
     $("#loginWindow").hide();
     $("#backcover").hide();
-    console.log('login');
   }
 
 
