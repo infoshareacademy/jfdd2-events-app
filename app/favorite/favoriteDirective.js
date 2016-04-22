@@ -26,6 +26,7 @@ function favoriteController($scope, alert) {
         console.log('user ready', userData);
         userFavRec = angular.copy(userData);
         $scope.user = userFavRec;
+
         $scope.$apply()
     });
 
