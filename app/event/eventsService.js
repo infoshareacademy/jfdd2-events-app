@@ -9,7 +9,7 @@ function eventsService() {
     getEventsFromServer: function () {
       return $.ajax({
           type: 'GET',
-          url: URL + "/events",
+          url: urlPrefix + "/events",
           dataType: 'json'
         })
         .done(function (eventsList) {

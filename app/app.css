@@ -66,3 +66,7 @@ body{
     position: relative;
     margin: 0px;
 }
+.images{
+    max-height: 250px;
+    width: 100%;
+}
