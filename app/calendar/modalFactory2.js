@@ -45,7 +45,7 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
                 vm.addToFav = function () {
                     
-    sharedFavorite.setFavToServerWithValidation(event,showStatement("Te wydarzenie jest już w ulubionych!"));
+    sharedFavorite.setFavToServerWithValidation(event,showStatement);
                         $uibModalInstance.close(vm.event);
                    
                         // showStatement('Te wydarzenie jest już w ulubionych!')

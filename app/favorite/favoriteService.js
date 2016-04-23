@@ -5,7 +5,7 @@ function sharedFavorite() {
         setFavToServerWithValidation: function (currentEvent, showStatement) {
             $.ajax({
                 type: "GET",
-                url: urlPrefix + '/favs?filter[where][appId]=events&filter[where][id]=' + currentEvent.id + '&filter[where][userId]=' + usernameStr,
+                url: urlPrefix + '/favs?filter[where][appId]=events&filter[where][objectType]=' + currentEvent.id + '&filter[where][userId]=' + usernameStr,
                 dataType: 'json',
                 success: function (result) {
                     if (result.length === 0) {
@@ -14,12 +14,12 @@ function sharedFavorite() {
                             "appId": "events",
                             "objectType": currentEvent.id,
                             "objectId": currentEvent.title,
-                            "userId": usernameStr,
-                            "id": currentEvent.id
+                            "userId": usernameStr
 
                         };
 
-                        console.log(userFavRec);
+                        console.log('to jest curEvent');
+                        console.log(currentEvent);
                         console.log('przed wyslaneim na server');
                         $.ajax({
                             type: 'POST',
@@ -29,22 +29,21 @@ function sharedFavorite() {
                             success: function () {
                                 currentEvent.objectId = currentEvent.title;
                                 userFavRec.favorite.push(currentEvent);
-                                ifemptyPromise.resolve(result);
 
                             }
                         });
-                    }else{
-                        showStatement;
+                    } else {
+                        showStatement("To wydarzenie jest już w ulubionych!");
                     }
                 }
             });
 
 
         },
-        setRecToServerWithValidation: function (currentEvent, receiverLogin,showStatement) {
+        setRecToServerWithValidation: function (currentEvent, receiverLogin, showStatement) {
             $.ajax({
                 type: 'get',
-                url: urlPrefix + '/recommendations?filter[where][appId]=events&filter[where][id]=' + currentEvent.id +
+                url: urlPrefix + '/recommendations?filter[where][appId]=events&filter[where][objectType]=' + currentEvent.id +
                 '&filter[where][receiverId]=' + receiverLogin + '&filter[where][senderId]=' + usernameStr,
                 dataType: 'json',
                 success: function (result) {
@@ -56,8 +55,7 @@ function sharedFavorite() {
                             "senderId": usernameStr,
                             "receiverId": receiverLogin,
                             "objectType": currentEvent.id,
-                            "objectId": currentEvent.title,
-                            "id": currentEvent.id
+                            "objectId": currentEvent.title
                         };
 
                         console.log("to rec" + toRec);
@@ -70,16 +68,14 @@ function sharedFavorite() {
                             success: function () {
                                 currentEvent.objectId = currentEvent.title;
                                 userFavRec.recommended.push(currentEvent);
-                                ifemptyPromise.resolve(result);
                             }
                         });
 
-                    }else{
-                        showStatement;
+                    } else {
+                        showStatement("Te wydarzenie już zostało polecone uzytkownikowi " + receiverLogin);
                     }
                 }
             });
-
 
 
         }

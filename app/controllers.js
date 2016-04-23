@@ -41,6 +41,7 @@ app.controller('KitchenSinkCtrl', function($scope, moment, alert, $log, eventsSe
     vm.toggle = toggle;
 
     function eventClicked(event) {
+        console.log(event)
         alert.show('Clicked', event);
 
     }

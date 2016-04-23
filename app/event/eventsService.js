@@ -1,9 +1,10 @@
 /**
  * Created by karinabzowka on 05.04.16.
  */
+var events = [];
 app.service('eventsService', eventsService);
 function eventsService() {
-  var events = [];
+
 
   return {
     getEventsFromServer: function () {

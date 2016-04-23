@@ -47,6 +47,15 @@ userName.done(function (userNameString) {
                 title: item.objectId,
                 id: item.id
             };
+            // console.log('to jest polunienie obiektu',  item.objectType);
+
+            events.forEach(function (eventObject) {
+                if (eventObject.id == item.objectType) {
+                    eventObject["numLike"] = accumulator[item.objectType].occurrences;
+                }
+            })
+            // console.log(events)
+
         });
 
         $.ajax({
@@ -59,7 +68,17 @@ userName.done(function (userNameString) {
                     accumulator[item.objectType] = {
                         occurrences: (accumulator[item.objectType] && accumulator[item.objectType].occurrences || 0) + 1,
                         title: item.objectId
+
                     };
+                    events.forEach(function (eventObject) {
+                        if (eventObject.id == item.objectType) {
+                            if(isNaN(eventObject.numLike)){
+                            eventObject["numRec"] = accumulator[item.objectType].occurrences}
+                            else{
+                                eventObject["numRec"] = accumulator[item.objectType].occurrences-eventObject.numLike;
+                            }
+                        }
+                    })
                 });
                 for (var itemName in accumulator) {
                     if (accumulator.hasOwnProperty(itemName)) {
@@ -82,13 +101,44 @@ userName.done(function (userNameString) {
 
 
     $.when(favourite, recommended, popular).done(function (favoriteData, recommendedData, popularData) {
+
+        favoriteData.forEach(function (favouriteObject) {
+            events.forEach(function (eventObject) {
+                if (eventObject.id == favouriteObject.objectType) {
+                    favouriteObject["image"] = eventObject.image;
+                    favouriteObject["title"] = eventObject.title;
+                    favouriteObject["description"] = eventObject.description;
+                }
+            })
+        });
+console.log(favoriteData)
+        recommendedData.forEach(function (favouriteObject) {
+            events.forEach(function (eventObject) {
+                if (eventObject.id == favouriteObject.objectType) {
+                    favouriteObject["image"] = eventObject.image;
+                    favouriteObject["title"] = eventObject.title;
+                    favouriteObject["description"] = eventObject.description;
+                }
+            })
+        });
+
+        popularData.forEach(function (favouriteObject) {
+            events.forEach(function (eventObject) {
+                if (eventObject.id == favouriteObject.name) {
+                    favouriteObject["image"] = eventObject.image;
+                    favouriteObject["title"] = eventObject.title;
+                    favouriteObject["description"] = eventObject.description;
+                }
+            })
+        });
+
         user.resolve({
             favorite: favoriteData,
             recommended: recommendedData,
             popular: popularData
 
         });
-        console.log(favoriteData)
+        // console.log(favoriteData)
     });
 
 });
