@@ -9,7 +9,6 @@ function sharedFavorite() {
                 dataType: 'json',
                 success: function (result) {
                     if (result.length === 0) {
-                        console.log("tego wydarzenia nie ma w ulubuionych");
                         toFav = {
                             "appId": "events",
                             "objectType": currentEvent.id,
@@ -18,9 +17,6 @@ function sharedFavorite() {
 
                         };
 
-                        console.log('to jest curEvent');
-                        console.log(currentEvent);
-                        console.log('przed wyslaneim na server');
                         $.ajax({
                             type: 'POST',
                             url: urlPrefix + '/favs',
@@ -48,7 +44,6 @@ function sharedFavorite() {
                 dataType: 'json',
                 success: function (result) {
 
-
                     if (result.length === 0) {
                         toRec = {
                             "appId": "events",
@@ -57,8 +52,6 @@ function sharedFavorite() {
                             "objectType": currentEvent.id,
                             "objectId": currentEvent.title
                         };
-
-                        console.log("to rec" + toRec);
 
                         $.ajax({
                             type: 'POST',

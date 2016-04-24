@@ -1,30 +1,11 @@
 app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
 
-    function checkIfRecomended(eventID, eventsFromLocalStorage, login) {
-        var putOnFavorite = true;
 
-        if (eventsFromLocalStorage.length === 0) {
-            putOnFavorite = true;
-        } else {
-            eventsFromLocalStorage.map(function (value, index) {
-
-                for (prop in eventsFromLocalStorage[index]) {
-
-                    if (eventsFromLocalStorage[index].event.id === eventID && eventsFromLocalStorage[index].login === login) {
-                        putOnFavorite = false;
-                    }
-                }
-            });
-        }
-        return putOnFavorite ? true : false;
-
-    }
-
-    function showStatement (statement){
+    function showStatement(statement) {
         return $uibModal.open({
             templateUrl: "event/modalForStatement.html",
             size: "sm",
-            controller: function() {
+            controller: function () {
                 var vm = this;
                 vm.statement = statement;
             },
@@ -42,66 +23,25 @@ app.factory('alert', function ($uibModal, localStorageService, sharedFavorite) {
                 vm.login = "";
 
                 vm.addToFav = function () {
-                    var eventArrWithoutFilter = localStorageService.get("ulubione") || [];
-                    console.log(eventArrWithoutFilter);
 
-                    var recomenndedEvent = {
-                        // login: "info", to można dodaca jak już będzie na serwerze i bedzie sciagać ulubione akurat tego uzytkwinika
-                        event: vm.event
+                    sharedFavorite.setFavToServerWithValidation(event,showStatement);
+                    $uibModalInstance.close(vm.event);
 
 
-                    };
+                }
 
-
-                    if (sharedFavorite.checkIfThereIsEvent(event.id, eventArrWithoutFilter) === true) {
-
-                        // event.like++;
-
-                        eventArrWithoutFilter.push(recomenndedEvent);
-
-                        localStorageService.set("ulubione", eventArrWithoutFilter);
-
-                        sharedFavorite.setFavorite(recomenndedEvent);
-
-                        $uibModalInstance.close(vm.event);
-                    } else {
-                        showStatement("Te wydarzenie jest juz w ulubionych!");
-
-                    }
-                };
                 vm.addToRec = function () {
                     if (vm.login === "") {
                         showStatement("Należy podać login znajomego!");
 
+                    } else{
 
-                    } else {
-
-
-                        var eventArrWithoutFilter = localStorageService.get("polecane") || [];
-                        var recomenndedEvent = {
-                            login: vm.login,
-                            event: vm.event
-
-                        };
-                        if (checkIfRecomended(event.id, eventArrWithoutFilter, recomenndedEvent.login) === true) {
-
-                            // event.recomended++;
-
-                            eventArrWithoutFilter.push(recomenndedEvent);
-                            localStorageService.set("polecane", eventArrWithoutFilter);
-                            //dopisuje tylko gdy login sie zgadza
-                            if (recomenndedEvent.login === "info") {
-                                sharedFavorite.setRecomended(recomenndedEvent);
-                            }
-
-                            $uibModalInstance.close(vm.event);
-                        } else {
-                            showStatement("Temu znajomemu juz poleciles te wydarzenie!");
-
-
-                        }
-
+                        sharedFavorite.setRecToServerWithValidation(event,vm.login,showStatement);
+                        $uibModalInstance.close(vm.event);
                     }
+
+
+
 
                 };
 

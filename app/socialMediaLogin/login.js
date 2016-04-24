@@ -47,15 +47,12 @@ userName.done(function (userNameString) {
                 title: item.objectId,
                 id: item.id
             };
-            // console.log('to jest polunienie obiektu',  item.objectType);
 
             events.forEach(function (eventObject) {
                 if (eventObject.id == item.objectType) {
                     eventObject["numLike"] = accumulator[item.objectType].occurrences;
                 }
             })
-            // console.log(events)
-
         });
 
         $.ajax({
@@ -72,10 +69,11 @@ userName.done(function (userNameString) {
                     };
                     events.forEach(function (eventObject) {
                         if (eventObject.id == item.objectType) {
-                            if(isNaN(eventObject.numLike)){
-                            eventObject["numRec"] = accumulator[item.objectType].occurrences}
-                            else{
-                                eventObject["numRec"] = accumulator[item.objectType].occurrences-eventObject.numLike;
+                            if (isNaN(eventObject.numLike)) {
+                                eventObject["numRec"] = accumulator[item.objectType].occurrences
+                            }
+                            else {
+                                eventObject["numRec"] = accumulator[item.objectType].occurrences - eventObject.numLike;
                             }
                         }
                     })
@@ -85,8 +83,7 @@ userName.done(function (userNameString) {
                         items.push({
                             name: itemName,
                             occurrences: accumulator[itemName].occurrences,
-                            title: accumulator[itemName].title,
-                            id: accumulator[itemName].id
+                            title: accumulator[itemName].title
 
                         })
                     }
@@ -111,7 +108,7 @@ userName.done(function (userNameString) {
                 }
             })
         });
-console.log(favoriteData)
+        console.log(favoriteData);
         recommendedData.forEach(function (favouriteObject) {
             events.forEach(function (eventObject) {
                 if (eventObject.id == favouriteObject.objectType) {
