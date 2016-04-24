@@ -9,21 +9,14 @@ function favorite() {
     }
 }
 
-//
-//
-//
-//
-//
+
 app.controller('favoriteController', favoriteController);
 
 function favoriteController($scope, alert) {
     var vm = this;
 
-    //Ulubione i Polecane
-    console.log('fav ctrl');
 
     $.when(user).done(function (userData) {
-        console.log('user ready', userData);
         userFavRec = angular.copy(userData);
         $scope.user = userFavRec;
 

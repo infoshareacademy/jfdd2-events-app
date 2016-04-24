@@ -91,6 +91,7 @@ userName.done(function (userNameString) {
                 items.sort(function (a, b) {
                     return b.occurrences - a.occurrences;
                 });
+                items = items.slice(0,5);
                 popular.resolve(items);
             });
 
@@ -108,7 +109,7 @@ userName.done(function (userNameString) {
                 }
             })
         });
-        console.log(favoriteData);
+
         recommendedData.forEach(function (favouriteObject) {
             events.forEach(function (eventObject) {
                 if (eventObject.id == favouriteObject.objectType) {
@@ -135,7 +136,6 @@ userName.done(function (userNameString) {
             popular: popularData
 
         });
-        // console.log(favoriteData)
     });
 
 });

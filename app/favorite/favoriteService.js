@@ -43,7 +43,7 @@ function sharedFavorite() {
                 '&filter[where][receiverId]=' + receiverLogin + '&filter[where][senderId]=' + usernameStr,
                 dataType: 'json',
                 success: function (result) {
-
+console.log("szysza" + result)
                     if (result.length === 0) {
                         toRec = {
                             "appId": "events",
